@@ -1,0 +1,67 @@
+<template>
+    <div>
+        <div @click="open = !open">
+        <slot name="button"></slot>
+        </div>
+        <div v-show="open"
+             class="fixed z-20 bottom-0 inset-x-0 px-4 pb-6 sm:inset-0 sm:p-0 sm:flex sm:items-center sm:justify-center">
+            <transition
+                enter-active-class="ease-out duration-300"
+                enter-class="opacity-0"
+                enter-to-class="opacity-100"
+                leave-active-class="ease-in duration-200"
+                leave-class="opacity-100"
+                leave-to-class="opacity-0"
+            >
+                <div v-show="open" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0"
+                     x-transition:enter-end="opacity-100" x-transition:leave="ease-in duration-200"
+                     x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+                     class="fixed inset-0 transition-opacity">
+                    <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+                </div>
+            </transition>
+            <transition
+                enter-active-class="ease-out duration-300"
+                enter-class="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                enter-to-class="opacity-100 translate-y-0 sm:scale-100"
+                leave-active-class="ease-in duration-200"
+                leave-class="opacity-100 translate-y-0 sm:scale-100"
+                leave-to-class="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+            >
+                <div ref="modal" v-show="open" style="height: 80%"
+                     class="relative lg:max-w-3xl bg-white rounded-lg px-4 pt-5 pb-4 overflow-auto shadow-xl transform transition-all sm:max-w-sm sm:w-full sm:p-6">
+                    <div class="mt-3 sm:mt-5">
+                        <slot name="content"></slot>
+                    </div>
+                    <svg @click="open = !open" class="absolute h-6 w-6 text-gray-400 cursor-pointer" style="top: 20px; right:20px" fill="currentColor" viewBox="0 0 20 20"><path d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" fill-rule="evenodd"></path></svg>
+                </div>
+            </transition>
+        </div>
+    </div>
+</template>
+
+<script>
+    export default {
+        data: function () {
+            return {
+                open: true,
+                width: ''
+            }
+        },
+        methods: {
+            closeTimeout() {
+                setTimeout(() => {
+                    this.open
+                }, 1000);
+            },
+        },
+        mounted() {
+            document.addEventListener('click', evt => {
+                evt.stopPropagation();
+                if (!this.$el.contains(evt.target)) {
+                    this.open = false;
+                }
+            });
+        }
+    }
+</script>

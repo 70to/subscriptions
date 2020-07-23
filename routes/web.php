@@ -20,3 +20,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('subscriptions', 'SubscriptionController');
+Route::get('/add-subscription', 'SubscriptionController@addSubscription')->name('add.subscription');
