@@ -20,7 +20,9 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('v-modal', require('./components/VModal.vue').default)
+Vue.component('v-select', require('./components/VSelect.vue').default)
 Vue.component('v-dropdown', require('./components/VDropdown.vue').default)
+Vue.component('add-subscription', require('./components/subscriptions/AddSubscription.vue').default)
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 /**

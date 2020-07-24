@@ -9,6 +9,7 @@
                     </label>
                     <div>
                         <div class="mt-1 relative rounded-md shadow-sm">
+                            <input type="hidden" name="service_id" value="{{$service_id}}">
                             <input name="name" id="name"
                                    class="form-input block w-full py-4 pl-5 pr-10 sm:text-lg sm:leading-5" value="{{$service ?? ''}}">
                         </div>
@@ -18,7 +19,7 @@
                     <label for="cycle" class="block text-sm font-medium leading-5 text-gray-700">
                         支払い周期
                     </label>
-                    <select id="location" name="cycle"
+                    <select id="location" name="cycle_id"
                             class="mt-1 py-4 form-select block w-full pl-3 pr-10 py-2 text-lg leading-6 border-gray-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300">
                         @foreach ($cycles as $key => $cycle)
                             <option value="{{$key}}">{{$cycle['label']}}</option>

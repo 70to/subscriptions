@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Models\Service;
+use Illuminate\Support\Facades\DB;
 
 class ServicesTableSeeder extends Seeder
 {
@@ -12,7 +13,7 @@ class ServicesTableSeeder extends Seeder
      */
     public function run()
     {
-        Service::create(
+        DB::table('services')->insert([
             [
                 'name' => 'Youtube',
                 'color' => '#FF0000'
@@ -41,6 +42,6 @@ class ServicesTableSeeder extends Seeder
                 'name' => 'Apple Music',
                 'color' => '#000000'
             ]
-        );
+        ]);
     }
 }

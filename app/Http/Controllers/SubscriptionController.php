@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Subscription;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SubscriptionController extends Controller
 {
@@ -14,29 +15,14 @@ class SubscriptionController extends Controller
      */
     public function index()
     {
-        $subscriptions = [
-          [
-            'name' => 'Youtube'
-          ],
-          [
-            'name' => 'Spotify'
-          ],
-        ];
+        $user = Auth::user();
+        $subscriptions = $user->subscriptions()->get();
         return view('subscriptions.index', compact('subscriptions'));
     }
 
     public function addSubscription()
     {
-        $subscriptions = [
-            [
-                'name' => 'Youtube'
-            ],
-            [
-                'name' => 'Spotify'
-            ],
-        ];
-
-        return view('subscriptions.add_subscription', compact('subscriptions'));
+        return view('subscriptions.add_subscription');
     }
 
     /**
@@ -46,9 +32,10 @@ class SubscriptionController extends Controller
      */
     public function create(Request $request)
     {
-        $cycles = Subscription::CIRCLE;
+        $cycles = Subscription::CYCLE;
         $service = $request->service;
-        return view('subscriptions.create', compact('subscriptions', 'service', 'cycles'));
+        $service_id = $request->service_id;
+        return view('subscriptions.create', compact('subscriptions', 'service', 'service_id', 'cycles'));
     }
 
     /**
@@ -60,14 +47,16 @@ class SubscriptionController extends Controller
     public function store(Request $request)
     {
 //        dd($request->all());
-        $subscription = new Subscription();
-        $subscription->name = $request->name;
-        $subscription->cycle_id = $request->cycle;
-        $subscription->price = $request->price;
-        $subscription->next_bill = $request->next_bill;
-        $subscription->memo = $request->memo;
-        $subscription->save();
-        return redirect()->back();
+        $user = Auth::user();
+        $user->subscriptions()->create([
+           'service_id' => $request->service_id,
+           'name' => $request->name,
+           'cycle_id' => $request->cycle_id,
+           'price' => $request->price,
+           'next_bill' => $request->next_bill,
+           'memo' => $request->memo
+        ]);
+        return redirect()->route('subscriptions.index');
     }
 
     /**

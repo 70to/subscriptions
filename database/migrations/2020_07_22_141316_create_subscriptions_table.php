@@ -18,10 +18,10 @@ class CreateSubscriptionsTable extends Migration
             $table->integer('service_id');
             $table->integer('user_id');
             $table->string('name');
-            $table->integer('cycle_id');
+            $table->integer('cycle_id')->nullable();
             $table->float('price');
-            $table->string('next_bill');
-            $table->longText('memo');
+            $table->date('next_bill')->nullable();
+            $table->longText('memo')->nullable();
             $table->timestamps();
         });
     }

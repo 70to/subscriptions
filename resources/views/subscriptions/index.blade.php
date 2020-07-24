@@ -26,8 +26,8 @@
             </template>
             <template v-slot:content>
                 <div>
-                    <div class="bg-green-400 p-10 text-center">
-                        <p class="text-3xl text-white">Spotify</p>
+                    <div class="p-10 text-center" style="background: {{$subscription->service->color}}">
+                        <p class="text-3xl text-white">{{$subscription->name}}</p>
                     </div>
                     <div class="p-8">
                         <div>
@@ -38,7 +38,7 @@
                                             サービス名
                                         </dt>
                                         <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-                                            Spotify
+                                            {{$subscription->name}}
                                         </dd>
                                     </div>
                                     <div
@@ -47,7 +47,7 @@
                                             支払い周期
                                         </dt>
                                         <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-                                            月額
+                                            {{\App\Models\Subscription::CYCLE[$subscription->cycle_id]['label']}}
                                         </dd>
                                     </div>
                                     <div
@@ -56,7 +56,7 @@
                                             料金
                                         </dt>
                                         <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-                                            980円
+                                            {{$subscription->price}}
                                         </dd>
                                     </div>
                                     <div
@@ -65,7 +65,7 @@
                                             次回支払日
                                         </dt>
                                         <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-                                            2020年1月8日
+                                            {{$subscription->next_bill}}
                                         </dd>
                                     </div>
                                     <div
@@ -74,10 +74,7 @@
                                             メモ
                                         </dt>
                                         <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-                                            Fugiat ipsum ipsum deserunt culpa aute sint do nostrud anim incididunt
-                                            cillum culpa consequat. Excepteur qui ipsum aliquip consequat sint. Sit id
-                                            mollit nulla mollit nostrud in ea officia proident. Irure nostrud pariatur
-                                            mollit ad adipisicing reprehenderit deserunt qui eu.
+                                            {{$subscription->memo}}
                                         </dd>
                                     </div>
                                     <div class="p-6">
