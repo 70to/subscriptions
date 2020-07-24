@@ -44,18 +44,11 @@ class SubscriptionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        $subscriptions = [
-            [
-                'name' => 'Youtube'
-            ],
-            [
-                'name' => 'Spotify'
-            ],
-        ];
-
-        return view('subscriptions.create', compact('subscriptions'));
+        $cycles = Subscription::CIRCLE;
+        $service = $request->service;
+        return view('subscriptions.create', compact('subscriptions', 'service', 'cycles'));
     }
 
     /**
@@ -66,7 +59,15 @@ class SubscriptionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+//        dd($request->all());
+        $subscription = new Subscription();
+        $subscription->name = $request->name;
+        $subscription->cycle_id = $request->cycle;
+        $subscription->price = $request->price;
+        $subscription->next_bill = $request->next_bill;
+        $subscription->memo = $request->memo;
+        $subscription->save();
+        return redirect()->back();
     }
 
     /**

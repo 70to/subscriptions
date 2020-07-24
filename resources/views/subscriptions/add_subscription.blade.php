@@ -2,10 +2,18 @@
 
 @section('content-header')
     <header>
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
             <h1 class="text-3xl font-bold leading-tight text-gray-900">
                 サービスを追加する
             </h1>
+            <a href="{{route('subscriptions.create')}}"
+               class="px-4 py-2.5 flex flex-row justify-center items-center bg-gray-500 text-white rounded-lg-xl focus:outline-none transition duration-150">
+                <svg fill="currentColor" class="h-4 mr-1" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                          d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                          clip-rule="evenodd"></path>
+                </svg>
+                <p class="font-medium text-sm">カスタム</p></a>
         </div>
     </header>
 @endsection
