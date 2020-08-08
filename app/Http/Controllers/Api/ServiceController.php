@@ -9,8 +9,7 @@ class ServiceController extends Controller
 {
     public function get()
     {
-        $services = Service::all();
+        $services = Service::where('id', '<>', Service::CUSTOM)->get();
         return response()->json(['services' => $services]);
     }
-
 }

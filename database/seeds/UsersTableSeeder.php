@@ -11,11 +11,12 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::create([
+        $user = \App\Models\User::create([
             'name' => 'admin',
             'email' => 'admin@admin.com',
             'password' => Hash::make('admin0123'),
         ]);
+
         \App\Models\User::create([
             'name' => 'test',
             'email' => 'test@test.com',

@@ -2210,7 +2210,7 @@ __webpack_require__.r(__webpack_exports__);
       for (var i in this.users) {
         var user = this.users[i];
 
-        if (user.name.indexOf(this.keyword) !== -1) {
+        if (user.name.toLowerCase().indexOf(this.keyword) !== -1) {
           users.push(user);
         }
       }
@@ -20980,15 +20980,7 @@ var render = function() {
         return _c("div", [
           _c(
             "a",
-            {
-              attrs: {
-                href:
-                  "/subscriptions/create?service=" +
-                  user.name +
-                  "&service_id=" +
-                  user.id
-              }
-            },
+            { attrs: { href: "/subscriptions/create?service_id=" + user.id } },
             [
               _c(
                 "div",

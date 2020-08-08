@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\Service;
 use Illuminate\Support\Facades\DB;
 
 class ServicesTableSeeder extends Seeder
@@ -14,6 +13,10 @@ class ServicesTableSeeder extends Seeder
     public function run()
     {
         DB::table('services')->insert([
+            [
+                'name' => 'Custom',
+                'color' => '#6b7280'
+            ],
             [
                 'name' => 'Youtube',
                 'color' => '#FF0000'
@@ -35,13 +38,33 @@ class ServicesTableSeeder extends Seeder
                 'color' => '#003087'
             ],
             [
-                'name' => 'iCLoud',
+                'name' => 'iCloud',
                 'color' => '#3080EB'
             ],
             [
                 'name' => 'Apple Music',
                 'color' => '#000000'
-            ]
+            ],
+            [
+                'name' => 'Evernote',
+                'color' => '#00a82d'
+            ],
+            [
+                'name' => 'Dropbox',
+                'color' => '#007ee5'
+            ],
+            [
+                'name' => 'Google Play Music',
+                'color' => '#dd4b39'
+            ],
+            [
+                'name' => 'Line Music',
+                'color' => '#00c300'
+            ],
+            [
+                'name' => 'Hulu',
+                'color' => '#66aa33'
+            ],
         ]);
     }
 }

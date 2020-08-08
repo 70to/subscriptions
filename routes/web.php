@@ -25,5 +25,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('subscriptions', 'SubscriptionController');
     Route::get('/add-subscription', 'SubscriptionController@addSubscription')->name('add.subscription');
-
+    Route::get('settings', 'SettingController@index')->name('settings');
 });

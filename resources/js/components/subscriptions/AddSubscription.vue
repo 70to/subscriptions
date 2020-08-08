@@ -23,7 +23,7 @@
             </div>
         </div>
         <div v-for="user in filteredUsers">
-            <a :href="'/subscriptions/create?service=' + user.name + '&service_id=' + user.id">
+            <a :href="'/subscriptions/create?service_id=' + user.id">
                 <div class="p-6 mb-4 bg-green-400 flex justify-between items-center" :style="{background:user.color}">
                     <h2 class="text-2xl text-white">{{user.name}}</h2>
                     <div>
@@ -62,7 +62,7 @@
 
                     var user = this.users[i];
 
-                    if (user.name.indexOf(this.keyword) !== -1) {
+                    if (user.name.toLowerCase().indexOf(this.keyword) !== -1) {
 
                         users.push(user);
 
