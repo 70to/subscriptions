@@ -2050,6 +2050,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2064,17 +2070,6 @@ __webpack_require__.r(__webpack_exports__);
         _this.open;
       }, 1000);
     }
-  },
-  mounted: function mounted() {
-    var _this2 = this;
-
-    document.addEventListener('click', function (evt) {
-      evt.stopPropagation();
-
-      if (!_this2.$el.contains(evt.target)) {
-        _this2.open = false;
-      }
-    });
   }
 });
 
@@ -20724,7 +20719,12 @@ var render = function() {
               },
               [
                 _c("div", {
-                  staticClass: "absolute inset-0 bg-gray-500 opacity-75"
+                  staticClass: "absolute inset-0 bg-gray-500 opacity-75",
+                  on: {
+                    click: function($event) {
+                      _vm.open = !_vm.open
+                    }
+                  }
                 })
               ]
             )

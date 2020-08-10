@@ -5,6 +5,11 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Models\User;
+use App\Models\SocialUser;
+use DB;
+use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -36,5 +41,43 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function login()
+    {
+        return Socialite::with('Twitter')->redirect();
+    }
+
+    public function callback()
+    {
+        $providerUser = Socialite::driver('Twitter')->user();
+
+        // 既に存在するユーザーかを確認
+//        $socialUser = SocialUser::where('provider_user_id', $providerUser->id)->first();
+        $socialUser = User::where('email', $providerUser->email)->first();
+
+        if ($socialUser) {
+            // 既存のユーザーはログインしてトップページへ
+            Auth::login($socialUser, true);
+            return redirect($this->redirectTo);
+        }
+
+        // 新しいユーザーを作成
+        $user = new User();
+        $user->unique_id = $providerUser->nickname;
+        $user->name = $providerUser->name;
+        $user->email = $providerUser->email;
+        $user->avatar = $providerUser->user['profile_image_url_https'];
+
+        $socialUser = new SocialUser();
+        $socialUser->provider_user_id = $providerUser->id;
+
+        DB::transaction(function () use ($user, $socialUser) {
+            $user->save();
+            $user->socialUsers()->save($socialUser);
+        });
+
+        Auth::login($user, true);
+        return redirect('/');
     }
 }

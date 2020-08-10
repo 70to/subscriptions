@@ -39,7 +39,7 @@
                     <div class="hidden sm:ml-6 sm:flex sm:items-center">
                         <v-dropdown width="w-56">
                             <template v-slot:activator>
-                                <button id="user-menu" aria-label="User menu" aria-haspopup="true" class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out"><img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="" class="h-8 w-8 rounded-full"></button>
+                                <button id="user-menu" aria-label="User menu" aria-haspopup="true" class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out"><img src="{{Auth::user()->avatar}}" alt="" class="h-8 w-8 rounded-full"></button>
                             </template>
                             <template v-slot:content>
                                 <a href="{{route('settings')}}"

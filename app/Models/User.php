@@ -40,4 +40,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\Subscription');
     }
+
+    public function socialUsers()
+    {
+        return $this->hasMany(SocialUser::class);
+    }
 }

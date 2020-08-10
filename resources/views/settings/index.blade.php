@@ -20,7 +20,7 @@
                             ユーザーネーム
                         </label>
                         <div class="mt-1 sm:mt-0 sm:col-span-2">
-                            naotolog
+                            {{Auth::user()->name}}
                         </div>
                     </div>
 
@@ -30,7 +30,7 @@
                             メールアドレス
                         </label>
                         <div class="mt-1 sm:mt-0 sm:col-span-2">
-                            naotolog
+                            {{Auth::user()->email}}
                         </div>
                     </div>
 
@@ -56,7 +56,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </form>
 
