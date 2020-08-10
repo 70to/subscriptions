@@ -21,6 +21,22 @@
 @endsection
 
 @section('content')
+    @if (count($subscriptions) === 0)
+        <div class="mx-auto text-center">
+            <img src="{{asset('imgs/undraw_no_data_qbuo.png')}}" alt="" class="w-48 mx-auto">
+            <h2 class="text-xl font-bold mb-2">まだサブスクリプションが登録されていません。</h2>
+            <p class="mb-4 text-gray-600">サブスクリプションを把握して無駄な支出を抑えましょう！</p>
+            <a href="{{route('add.subscription')}}"
+               class="px-4 py-2.5 inline-flex items-center  flex flex-row justify-center items-center bg-gray-500 text-white rounded-lg-xl focus:outline-none transition duration-150">
+                <svg fill="currentColor" class="h-4 mr-1" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                          d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                          clip-rule="evenodd"></path>
+                </svg>
+                <p class="font-medium text-sm">追加する</p>
+            </a>
+        </div>
+    @endif
     @foreach ($subscriptions as $subscription)
         <v-modal>
             <template v-slot:button>

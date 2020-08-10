@@ -37,7 +37,7 @@
                         </div>
                     </div>
                     <div class="hidden sm:ml-6 sm:flex sm:items-center">
-                        <v-dropdown width="w-56">
+                        <v-dropdown width="w-36">
                             <template v-slot:activator>
                                 <button id="user-menu" aria-label="User menu" aria-haspopup="true" class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out"><img src="{{Auth::user()->avatar}}" alt="" class="h-8 w-8 rounded-full"></button>
                             </template>
@@ -52,7 +52,6 @@
                                       class="hidden">
                                     {{ csrf_field() }}
                                 </form>
-
                             </template>
                         </v-dropdown>
 
