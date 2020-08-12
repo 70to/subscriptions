@@ -22,57 +22,63 @@
                 </svg>
             </div>
         </div>
-        <div v-for="user in filteredUsers">
-            <a :href="'/subscriptions/create?service_id=' + user.id">
-                <div class="p-6 mb-4 bg-green-400 flex justify-between items-center" :style="{background:user.color}">
-                    <h2 class="text-2xl text-white">{{user.name}}</h2>
-                    <div>
-                        <svg fill="currentColor" class="text-white h-6" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd"
-                                  d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
-                                  clip-rule="evenodd"></path>
-                        </svg>
-                    </div>
-                </div>
-            </a>
+        <button class="btn btn-primary btn-block" v-on:click="generate">画像を生成</button>
+
+        <div id="capture">
+            <div v-for="service in filteredUsers">
+                <subscription-block :service="service"></subscription-block>
+            </div>
         </div>
     </div>
 </template>
 <script>
-    export default {
-        data: function () {
-            return {
-                keyword: '',
-                users: []
-            }
-        },
-        created() {
-            axios.get(`/api/services`).then((response) => {
-                this.users = response.data.services
-            }).catch((err) => {
-                reject(err)
-            })
-        },
-        computed: {
-            filteredUsers: function () {
+import html2canvas from "html2canvas";
+import SubscriptionBlock from "./SubscriptionBlock";
 
-                var users = [];
+export default {
+    components: {
+        SubscriptionBlock
+    },
+    data: function () {
+        return {
+            keyword: '',
+            services: []
+        }
+    },
+    methods: {
+        generate() {
+            html2canvas(document.querySelector("#capture")).then(canvas => {
+                document.body.appendChild(canvas)
+            });
+        }
+    },
+    created() {
+        axios.get(`/api/services`).then((response) => {
+            this.services = response.data.services
+        }).catch((err) => {
+            reject(err)
+        })
+    },
+    computed: {
+        filteredUsers: function () {
 
-                for (var i in this.users) {
+            var services = [];
 
-                    var user = this.users[i];
+            for (var i in this.services) {
 
-                    if (user.name.toLowerCase().indexOf(this.keyword) !== -1) {
+                var service = this.services[i];
 
-                        users.push(user);
+                if (service.name.toLowerCase().indexOf(this.keyword) !== -1) {
 
-                    }
+                    services.push(service);
 
                 }
 
-                return users;
-
             }
+
+            return services;
+
         }
     }
+}
 </script>

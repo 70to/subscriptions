@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "@tailwindcss/ui": "^0.4.0",
+        "html2canvas": "^1.0.0-rc.7",
         "vue-multiselect": "^2.1.6"
     }
 }
