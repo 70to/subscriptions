@@ -23,6 +23,7 @@ Vue.component('v-modal', require('./components/VModal.vue').default)
 Vue.component('v-select', require('./components/VSelect.vue').default)
 Vue.component('v-dropdown', require('./components/VDropdown.vue').default)
 Vue.component('add-subscription', require('./components/subscriptions/AddSubscription.vue').default)
+Vue.component('my-subscriptions', require('./components/subscriptions/MySubscriptionsList.vue').default)
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 /**

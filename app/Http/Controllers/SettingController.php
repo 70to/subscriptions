@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 
+use Illuminate\Support\Facades\Auth;
+
 class SettingController extends Controller
 {
     public function index()
@@ -12,20 +14,17 @@ class SettingController extends Controller
 
     public function deleteAccount()
     {
+        $user = Auth::user();
 
-    }
+        if ($user->subscriptions()->exists()) {
+            $user->subscriptions()->delete();
+        }
 
-    public function store(Request $request)
-    {
-        $post = Post::find($request->id);
-        $login_user_id = Auth::user()->id;
-        $liked = $post->likes()->where('user_id', $login_user_id)->value('liked');
-        $like = $post->likes()->updateOrCreate(
-            ['user_id' => $login_user_id, 'post_id' => $post->id],
-            ['liked' => $liked ? false : true]
-        );
-        return response()->json([
-            'like' => $like->liked
-        ]);
+        if ($user->socialUsers()->exists()) {
+            $user->socialUsers()->delete();
+        }
+
+        $user->delete();
+        return redirect('/');
     }
 }

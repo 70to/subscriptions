@@ -25,11 +25,11 @@ Auth::routes([
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('subscriptions', 'SubscriptionController');
-    Route::get('/add-subscription', 'SubscriptionController@addSubscription')->name('add.subscription');
+    Route::get('add-subscription', 'SubscriptionController@addSubscription')->name('add.subscription');
     Route::get('settings', 'SettingController@index')->name('settings');
+    Route::delete('me', 'SettingController@deleteAccount')->name('user.delete');
 });
 
 Route::prefix('auth')->group(function () {

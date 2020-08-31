@@ -59,7 +59,7 @@ class SubscriptionController extends Controller
             'name' => $request->name,
             'cycle_id' => $request->cycle_id,
             'price' => $request->price,
-            'next_bill' => $request->next_bill,
+            'first_bill' => $request->first_bill,
             'memo' => $request->memo
         ]);
         return redirect()->route('subscriptions.index');
@@ -101,7 +101,7 @@ class SubscriptionController extends Controller
         $subscription->name = $request->name;
         $subscription->cycle_id = $request->cycle_id;
         $subscription->price = $request->price;
-        $subscription->next_bill = $request->next_bill;
+        $subscription->first_bill = $request->first_bill;
         $subscription->memo = $request->memo;
         $subscription->save();
         return redirect()->route('subscriptions.index');

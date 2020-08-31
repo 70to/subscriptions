@@ -22,7 +22,7 @@
                 </svg>
             </div>
         </div>
-        <button class="btn btn-primary btn-block" v-on:click="generate">画像を生成</button>
+<!--        <button class="btn btn-primary btn-block" v-on:click="generate">画像を生成</button>-->
 
         <div id="capture">
             <div v-for="service in filteredUsers">

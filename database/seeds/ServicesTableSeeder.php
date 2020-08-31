@@ -65,6 +65,10 @@ class ServicesTableSeeder extends Seeder
                 'name' => 'Hulu',
                 'color' => '#66aa33'
             ],
+            [
+                'name' => 'dTV',
+                'color' => '#DF0730'
+            ],
         ]);
     }
 }

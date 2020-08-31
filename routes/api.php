@@ -18,6 +18,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//Route::group(['middleware' => ['auth:api']], function () {
-    Route::get('/services', 'Api\ServiceController@get');
-//});
+//@link https://teratail.com/questions/172148
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('services', 'Api\ServiceController@get');
+    Route::get('my-subscriptions', 'Api\SubscriptionController@getMySubscriptions');
+    Route::post('tweet', 'Api\SubscriptionController@tweet');
+});

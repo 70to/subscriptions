@@ -11,52 +11,53 @@
 @endsection
 
 @section('content')
-    <form>
+    <div>
         <div>
-            <div>
-                <div class="mt-6 sm:mt-5 mb-20">
-                    <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                        <label for="username" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px">
-                            ユーザーネーム
-                        </label>
-                        <div class="mt-1 sm:mt-0 sm:col-span-2">
-                            {{Auth::user()->name}}
-                        </div>
+            <div class="mt-6 sm:mt-5 mb-20">
+                <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+                    <label for="username" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px">
+                        ユーザーネーム
+                    </label>
+                    <div class="mt-1 sm:mt-0 sm:col-span-2">
+                        {{Auth::user()->name}}
                     </div>
+                </div>
 
-                    <div
-                        class="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-b sm:border-gray-200 sm:pt-5 sm:pb-5">
-                        <label for="username" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px">
-                            メールアドレス
-                        </label>
-                        <div class="mt-1 sm:mt-0 sm:col-span-2">
-                            {{Auth::user()->email}}
-                        </div>
+                <div
+                    class="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-b sm:border-gray-200 sm:pt-5 sm:pb-5">
+                    <label for="username" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px">
+                        メールアドレス
+                    </label>
+                    <div class="mt-1 sm:mt-0 sm:col-span-2">
+                        {{Auth::user()->email}}
                     </div>
-
                 </div>
 
             </div>
 
-            <div class="bg-white shadow sm:rounded-lg">
-                <div class="px-4 py-5 sm:p-6">
-                    <h3 class="text-lg leading-6 font-bold text-gray-900">
-                       アカウントを削除
-                    </h3>
-                    <div class="mt-2 text-sm leading-5 text-gray-500">
-                        <p>
-                            一度アカウントを削除すると、登録データや作成データは全て削除され、復元することができません。
-                        </p>
-                    </div>
-                    <div class="mt-5">
-                        <button type="button"
+        </div>
+
+        <div class="bg-white shadow sm:rounded-lg">
+            <div class="px-4 py-5 sm:p-6">
+                <h3 class="text-lg leading-6 font-bold text-gray-900">
+                    アカウントを削除
+                </h3>
+                <div class="mt-2 text-sm leading-5 text-gray-500">
+                    <p>
+                        一度アカウントを削除すると、登録データや作成データは全て削除され、復元することができません。
+                    </p>
+                </div>
+                <div class="mt-5">
+                    <form action="{{route('user.delete')}}" method="post">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <button onclick="return confirm('本当に削除してよろしいですか？データは完全に削除され復元することはできません。');" type="submit"
                                 class="inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md text-red-700 bg-red-100 hover:bg-red-50 focus:outline-none focus:border-red-300 focus:shadow-outline-red active:bg-red-200 transition ease-in-out duration-150 sm:text-sm sm:leading-5">
                             アカウントを削除する
                         </button>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
-    </form>
-
+    </div>
 @endsection

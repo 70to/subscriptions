@@ -47,13 +47,13 @@
             </div>
 
             <div class="mt-6">
-                <label for="next_bill" class="block text-sm font-medium leading-5 text-gray-700">
-                    次回支払日
+                <label for="first_bill" class="block text-sm font-medium leading-5 text-gray-700">
+                    初回支払日
                 </label>
                 <div class="mt-1 relative rounded-md shadow-sm">
-                    <input name="next_bill" type="date" id="date"
+                    <input name="first_bill" type="date" id="date"
                            class="form-input py-4 block w-full sm:text-sm sm:leading-5"
-                           placeholder="you@example.com" value="{{old('next_bill', $subscription->next_bill ?? '')}}">
+                           placeholder="you@example.com" value="{{old('first_bill', $subscription->first_bill ?? '')}}">
                 </div>
             </div>
 

@@ -20,7 +20,7 @@ class CreateSubscriptionsTable extends Migration
             $table->string('name');
             $table->integer('cycle_id')->nullable();
             $table->float('price');
-            $table->date('next_bill')->nullable();
+            $table->date('first_bill')->nullable();
             $table->longText('memo')->nullable();
             $table->timestamps();
         });
