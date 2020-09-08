@@ -28276,7 +28276,9 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "a",
-    { attrs: { href: "/subscriptions/create?service_id=" + _vm.service.id } },
+    {
+      attrs: { href: "/me/subscriptions/create?service_id=" + _vm.service.id }
+    },
     [
       _c(
         "div",

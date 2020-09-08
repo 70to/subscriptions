@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,10 +25,13 @@ Auth::routes([
 ]);
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('{user:unique_id}', 'SubscriptionController@index')->name('subscriptions.index');
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::resource('subscriptions', 'SubscriptionController');
-    Route::get('add-subscription', 'SubscriptionController@addSubscription')->name('add.subscription');
+    Route::get('{user:unique_id}/edit', 'SubscriptionController@index')->name('subscriptions.edit');
+    Route::resource('me/subscriptions', 'SubscriptionController')->except('index');
+//    Route::resource('subscriptions', 'SubscriptionController');
+    Route::get('me/add_subscription', 'SubscriptionController@addSubscription')->name('me.add.subscription');
     Route::get('settings', 'SettingController@index')->name('settings');
     Route::delete('me', 'SettingController@deleteAccount')->name('user.delete');
 });

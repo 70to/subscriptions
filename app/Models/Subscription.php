@@ -3,14 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 
 class Subscription extends Model
 {
     protected $guarded = [];
 
-    protected $appends = ['next_bill'];
+    protected $appends = [
+        'next_bill'
+    ];
 
     protected $dates = [
         'first_bill'
@@ -25,6 +26,11 @@ class Subscription extends Model
 //        'MONTH' => ['value' => 1, 'label' => '月に一回', 'unit' => '月', 'default_checked' => true],
 //        'YEAR' => ['value' => 2, 'label' => '年に一回', 'unit' => '年', 'default_checked' => false]
 //    ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
 
     public function service()
     {
@@ -50,10 +56,9 @@ class Subscription extends Model
         return $next_bill;
     }
 
-    public static function calculate()
+    public static function calculate(User $user)
     {
         $month_sum = 0;
-        $user = Auth::user();
         $subscriptions = $user->subscriptions()->get();
         foreach ($subscriptions as $subscription) {
             if ($subscription->cycle_id === 1) {

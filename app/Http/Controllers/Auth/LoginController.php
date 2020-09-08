@@ -31,7 +31,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+//    protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
      * Create a new controller instance.
@@ -59,7 +59,8 @@ class LoginController extends Controller
         if ($socialUser) {
             // 既存のユーザーはログインしてトップページへ
             Auth::login($socialUser, true);
-            return redirect($this->redirectTo);
+//            return redirect($this->redirectTo);
+            return $this->redirectTo();
         }
 
         // 新しいユーザーを作成
@@ -79,5 +80,13 @@ class LoginController extends Controller
 
         Auth::login($user, true);
         return redirect('/');
+    }
+
+    protected function redirectTo()
+    {
+        if (!Auth::user()) {
+            return '/';
+        }
+        return redirect()->route('subscriptions.index', Auth::user()->unique_id);
     }
 }

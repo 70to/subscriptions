@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -44,5 +45,10 @@ class User extends Authenticatable
     public function socialUsers()
     {
         return $this->hasMany(SocialUser::class);
+    }
+
+    public function checkMe()
+    {
+        return (bool)(Auth::id() === $this->id);
     }
 }

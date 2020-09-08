@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Subscription;
 use App\Models\Service;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\CommingPaymentDate;
 
 class SubscriptionController extends Controller
 {
@@ -14,12 +17,11 @@ class SubscriptionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(User $user)
     {
-        $user = Auth::user();
         $subscriptions = $user->subscriptions()->get();
-        $month_sum = Subscription::calculate();
-        return view('subscriptions.index', compact('subscriptions', 'month_sum'));
+        $month_sum = Subscription::calculate($user);
+        return view('subscriptions.index', compact('user', 'subscriptions', 'month_sum'));
     }
 
     public function addSubscription()
@@ -62,7 +64,7 @@ class SubscriptionController extends Controller
             'first_bill' => $request->first_bill,
             'memo' => $request->memo
         ]);
-        return redirect()->route('subscriptions.index');
+        return redirect()->route('subscriptions.index', $user->unique_id);
     }
 
     /**
@@ -115,6 +117,8 @@ class SubscriptionController extends Controller
      */
     public function destroy(Subscription $subscription)
     {
-        //
+        $user = Auth::user();
+        $subscription->delete();
+        return redirect()->route('subscriptions.index', $user->unique_id);
     }
 }

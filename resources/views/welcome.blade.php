@@ -3,67 +3,10 @@
 @section('content')
     <div class="bg-gray-50">
         <div class="relative overflow-hidden">
-            <div class="block absolute inset-y-0 h-full w-full">
-                <div class="relative h-full">
-                    <svg
-                        class="absolute right-full transform translate-y-1/3 translate-x-1/4 md:translate-y-1/2 sm:translate-x-1/2 lg:translate-x-full"
-                        width="404" height="784" fill="none" viewBox="0 0 404 784">
-                        <defs>
-                            <pattern id="e229dbec-10e9-49ee-8ec3-0286ca089edf" x="0" y="0" width="20" height="20"
-                                     patternUnits="userSpaceOnUse">
-                                <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor"/>
-                            </pattern>
-                        </defs>
-                        <rect width="404" height="784" fill="url(#ad9a0a02-b58e-4a1d-8c36-1b649889af63)"/>
-                    </svg>
-                    <svg
-                        class="absolute left-full transform -translate-y-3/4 -translate-x-1/4 sm:-translate-x-1/2 md:-translate-y-1/2 lg:-translate-x-3/4"
-                        width="404" height="784" fill="none" viewBox="0 0 404 784">
-                        <defs>
-                            <pattern id="d2a68204-c383-44b1-b99f-42ccff4e5365" x="0" y="0" width="20" height="20"
-                                     patternUnits="userSpaceOnUse">
-                                <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor"/>
-                            </pattern>
-                        </defs>
-                        <rect width="404" height="784" fill="url(#478e97d6-90df-4a89-8d63-30fdbb3c7e57)"/>
-                    </svg>
-                </div>
-            </div>
+
+            @include('components.header')
 
             <div class="relative pt-6 pb-12 lg:pb-20">
-                <div class="max-w-screen-xl mx-auto px-4 sm:px-6">
-                    <nav class="relative flex items-center justify-between sm:h-10 md:justify-center">
-                        <div class="flex items-center flex-1 md:absolute md:inset-y-0 md:left-0">
-                            <div class="flex items-center justify-between w-full md:w-auto">
-                                <a href="{{url('/')}}" class="flex items-center">
-                                    <div class="mr-1.5">
-                                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                                             class="calendar text-indigo-600 w-8 h-8">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                                        </svg>
-                                    </div>
-                                </a>
-
-                                <div class="-mr-2 flex items-center md:hidden">
-                                    <a href="{{route('login')}}"
-                                       class="inline-flex items-center px-4 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-indigo-600 bg-white hover:text-indigo-500 focus:outline-none focus:border-indigo-300 focus:shadow-outline-indigo active:bg-gray-50 active:text-indigo-700 transition duration-150 ease-in-out">
-                                        ログイン
-                                    </a>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="hidden md:absolute md:flex md:items-center md:justify-end md:inset-y-0 md:right-0">
-            <span class="inline-flex rounded-md shadow">
-              <a href="{{route('login')}}"
-                 class="inline-flex items-center px-4 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-indigo-600 bg-white hover:text-indigo-500 focus:outline-none focus:border-indigo-300 focus:shadow-outline-indigo active:bg-gray-50 active:text-indigo-700 transition duration-150 ease-in-out">
-                ログイン
-              </a>
-            </span>
-                        </div>
-                    </nav>
-                </div>
 
 {{--                <!----}}
 {{--                  Mobile menu, show/hide based on menu open state.--}}
@@ -106,7 +49,7 @@
 {{--                    </div>--}}
 {{--                </div>--}}
 
-                <div class="mt-10 mx-auto max-w-screen-xl px-4 sm:px-6 md:mt-16 lg:mt-20">
+                <div class="mt-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 md:mt-16 lg:mt-20">
                     <div class="text-center">
                         <h2 class="mt-1 text-4xl tracking-tight font-extrabold text-gray-900 sm:leading-tight sm:text-5xl">
                             サブスクを管理して
@@ -125,7 +68,7 @@
                     <div class="flex-1"></div>
                     <div class="flex-1 w-full bg-gray-800"></div>
                 </div>
-                <div class="max-w-screen-xl mx-auto px-4 sm:px-6">
+                <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                     <img class="relative rounded-lg shadow-lg mx-auto"
                          src="{{asset('imgs/screenshot_2.png')}}"
                          alt="App screenshot">
@@ -134,7 +77,7 @@
         </div>
     </div>
     <div class="py-12 bg-white">
-        <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 lg:px-8">
             <div class="lg:text-center">
                 <p class="text-base leading-6 text-indigo-600 font-semibold tracking-wide uppercase">Roadmap</p>
                 <h3 class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
