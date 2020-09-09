@@ -4,7 +4,7 @@
     <header>
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
             <h1 class="text-3xl font-bold leading-tight text-gray-900">
-                サービスを追加する
+                <span style="color: {{$service->color}}">{{$service->name ?? 'サブスク'}}</span>を追加する
             </h1>
         </div>
     </header>

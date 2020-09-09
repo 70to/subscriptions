@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SubscriptionRequest;
 use App\Models\Subscription;
 use App\Models\Service;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\CommingPaymentDate;
 
 class SubscriptionController extends Controller
 {
@@ -41,7 +40,7 @@ class SubscriptionController extends Controller
             $service = Service::findOrFail($request->service_id);
         } else {
             $service = Service::find(Service::CUSTOM);
-            $service->name = '';
+            $service->name = null;
         }
         return view('subscriptions.create', compact('subscriptions', 'service', 'cycles'));
     }
@@ -52,9 +51,8 @@ class SubscriptionController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SubscriptionRequest $request)
     {
-//        dd($request->all());
         $user = Auth::user();
         $user->subscriptions()->create([
             'service_id' => $request->service_id,
@@ -99,6 +97,7 @@ class SubscriptionController extends Controller
      */
     public function update(Request $request, Subscription $subscription)
     {
+        $user = Auth::user();
         $subscription->service_id = $request->service_id;
         $subscription->name = $request->name;
         $subscription->cycle_id = $request->cycle_id;
@@ -106,7 +105,7 @@ class SubscriptionController extends Controller
         $subscription->first_bill = $request->first_bill;
         $subscription->memo = $request->memo;
         $subscription->save();
-        return redirect()->route('subscriptions.index');
+        return redirect()->route('subscriptions.index', $user->unique_id);
     }
 
     /**

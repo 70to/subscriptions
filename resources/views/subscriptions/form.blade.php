@@ -2,20 +2,26 @@
 <div>
     <div>
         <div class="mt-6">
-            <div class="mt-6">
-                <label for="service" class="block text-sm font-medium leading-5 text-gray-700">
-                    サービス名
-                </label>
-                <div>
-                    <div class="mt-1 relative rounded-md shadow-sm">
-                        <input type="hidden" name="service_id"
-                               value="{{$subscription->service->id ?? $service->id}}">
-                        <input name="name" id="name"
-                               class="form-input block w-full py-4 pl-5 pr-10 sm:text-lg sm:leading-5"
-                               value="{{$subscription->name ?? $service->name}}">
+            @if (empty($service->name))
+                <div class="mt-6">
+                    <label for="service" class="block text-sm font-medium leading-5 text-gray-700">
+                        サービス名
+                    </label>
+                    <div>
+                        <div class="mt-1 relative rounded-md shadow-sm">
+                            <input type="hidden" name="service_id"
+                                   value="{{$subscription->service->id ?? $service->id}}">
+                            <input name="name" id="name"
+                                   class="form-input block w-full py-4 pl-5 pr-10 sm:text-lg sm:leading-5"
+                                   value="{{$subscription->name ?? $service->name}}">
+                        </div>
                     </div>
                 </div>
-            </div>
+            @else
+                <input type="hidden" name="name" id="name" class="form-input block w-full py-4 pl-5 pr-10 sm:text-lg sm:leading-5"
+                       value="{{$subscription->name ?? $service->name}}">
+                <input type="hidden" name="service_id" value="{{$subscription->service->id ?? $service->id}}">
+            @endif
             <div class="mt-6">
                 <label for="cycle" class="block text-sm font-medium leading-5 text-gray-700">
                     支払い周期
@@ -27,6 +33,9 @@
                             value="{{$key}}" {{ $key == old('cycle_id', $subscription->cycle_id ?? '') ? 'selected' : '' }}>{{$cycle['label']}}</option>
                     @endforeach
                 </select>
+                @if ($errors->first('cycle_id'))
+                    <p class="mt-2 text-sm text-red-600" id="email-error">{{$errors->first('cycle_id')}}</p>
+                @endif
             </div>
             <div class="mt-6">
                 <label for="price" class="block text-sm font-medium leading-5 text-gray-700">
@@ -44,6 +53,9 @@
                                placeholder="1000" value="{{old('price', $subscription->price ?? '')}}">
                     </div>
                 </div>
+                @if ($errors->first('price'))
+                    <p class="mt-2 text-sm text-red-600" id="email-error">{{$errors->first('price')}}</p>
+                @endif
             </div>
 
             <div class="mt-6">
@@ -53,8 +65,11 @@
                 <div class="mt-1 relative rounded-md shadow-sm">
                     <input name="first_bill" type="date" id="date"
                            class="form-input py-4 block w-full sm:text-sm sm:leading-5"
-                           placeholder="you@example.com" value="{{old('first_bill', $subscription->first_bill ?? '')}}">
+                           placeholder="" value="{{old('first_bill', isset($subscription) ? $subscription->first_bill->format('Y-m-d') : '')}}">
                 </div>
+                @if ($errors->first('first_bill'))
+                    <p class="mt-2 text-sm text-red-600" id="email-error">{{$errors->first('first_bill')}}</p>
+                @endif
             </div>
 
             <div class="mt-6">
