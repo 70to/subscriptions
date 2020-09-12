@@ -84,6 +84,8 @@ class SubscriptionController extends Controller
      */
     public function edit(Subscription $subscription)
     {
+        $this->authorize('view', $subscription);
+
         $cycles = Subscription::CYCLE;
         return view('subscriptions.edit', compact('subscription', 'cycles'));
     }
@@ -97,6 +99,7 @@ class SubscriptionController extends Controller
      */
     public function update(Request $request, Subscription $subscription)
     {
+        $this->authorize('update', $subscription);
         $user = Auth::user();
         $subscription->service_id = $request->service_id;
         $subscription->name = $request->name;
@@ -116,6 +119,7 @@ class SubscriptionController extends Controller
      */
     public function destroy(Subscription $subscription)
     {
+        $this->authorize('delete', $subscription);
         $user = Auth::user();
         $subscription->delete();
         return redirect()->route('subscriptions.index', $user->unique_id);
