@@ -36,13 +36,14 @@ class SubscriptionController extends Controller
     public function create(Request $request)
     {
         $cycles = Subscription::CYCLE;
+        $is_custom_service = false;
         if ($request->service_id) {
             $service = Service::findOrFail($request->service_id);
         } else {
             $service = Service::find(Service::CUSTOM);
-            $service->name = null;
+            $is_custom_service = true;
         }
-        return view('subscriptions.create', compact('subscriptions', 'service', 'cycles'));
+        return view('subscriptions.create', compact('service', 'cycles', 'is_custom_service'));
     }
 
     /**
@@ -86,8 +87,13 @@ class SubscriptionController extends Controller
     {
         $this->authorize('view', $subscription);
 
+        if ($subscription->service->id === Service::CUSTOM){
+            $is_custom_service = true;
+        }else{
+            $is_custom_service = false;
+        }
         $cycles = Subscription::CYCLE;
-        return view('subscriptions.edit', compact('subscription', 'cycles'));
+        return view('subscriptions.edit', compact('subscription', 'cycles', 'is_custom_service'));
     }
 
     /**
@@ -97,7 +103,7 @@ class SubscriptionController extends Controller
      * @param \App\Subscription $subscription
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Subscription $subscription)
+    public function update(SubscriptionRequest $request, Subscription $subscription)
     {
         $this->authorize('update', $subscription);
         $user = Auth::user();

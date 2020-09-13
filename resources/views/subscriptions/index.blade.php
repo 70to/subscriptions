@@ -22,17 +22,6 @@
                 {{$month_sum}}<span
                     class="text-xl">&nbsp円/月</span>
             </h1>
-{{--            @if (Auth::user() && Auth::user()->checkMe())--}}
-{{--                <a href="{{route('add.subscription')}}"--}}
-{{--                   class="px-4 py-2.5 inline-flex items-center  flex flex-row justify-center items-center bg-gray-500 text-white rounded-lg-xl focus:outline-none transition duration-150">--}}
-{{--                    <svg fill="currentColor" class="h-4 mr-1" viewBox="0 0 20 20">--}}
-{{--                        <path fill-rule="evenodd"--}}
-{{--                              d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"--}}
-{{--                              clip-rule="evenodd"></path>--}}
-{{--                    </svg>--}}
-{{--                    <p class="font-medium text-sm">追加する</p>--}}
-{{--                </a>--}}
-{{--            @endif--}}
         </div>
     </header>
 @endsection

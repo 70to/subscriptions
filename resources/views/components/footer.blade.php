@@ -10,7 +10,7 @@
         </nav>
         <div class="mt-8">
             <p class="text-center text-base leading-6 text-gray-400">
-                &copy; 2020 Workflow, Inc. All rights reserved.
+                &copy; 2020 {{config('app.name')}}, Inc. All rights reserved.
             </p>
         </div>
     </div>

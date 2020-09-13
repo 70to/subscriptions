@@ -4,7 +4,7 @@
     <header>
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
             <h1 class="text-3xl font-bold leading-tight text-gray-900">
-                サービスを追加する
+                サブスクリプションを追加する
             </h1>
             @component('components.base.button')
                 @slot('url')

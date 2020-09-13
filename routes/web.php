@@ -32,7 +32,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('me/subscriptions', 'SubscriptionController')->except('index');
 //    Route::resource('subscriptions', 'SubscriptionController');
     Route::get('me/add_subscription', 'SubscriptionController@addSubscription')->name('me.add.subscription');
-    Route::get('settings', 'SettingController@index')->name('settings');
+    Route::get('me/settings', 'SettingController@index')->name('settings');
     Route::delete('me', 'SettingController@deleteAccount')->name('user.delete');
 });
 

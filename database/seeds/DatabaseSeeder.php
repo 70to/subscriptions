@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\App;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,5 +15,8 @@ class DatabaseSeeder extends Seeder
 //        $this->call(ServicesTableSeeder::class);
 //        $this->call(UsersTableSeeder::class);
         $this->call(MySubscriptionsSeeder::class);
+        if (App::environment() === "local"){
+            $this->call(SubscriptionsForScreenshotSeeder::class);
+        }
     }
 }

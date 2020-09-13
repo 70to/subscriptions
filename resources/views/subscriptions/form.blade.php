@@ -2,7 +2,7 @@
 <div>
     <div>
         <div class="mt-6">
-            @if (empty($service->name))
+            @if ($is_custom_service)
                 <div class="mt-6">
                     <label for="service" class="block text-sm font-medium leading-5 text-gray-700">
                         サービス名
@@ -13,12 +13,13 @@
                                    value="{{$subscription->service->id ?? $service->id}}">
                             <input name="name" id="name"
                                    class="form-input block w-full py-4 pl-5 pr-10 sm:text-lg sm:leading-5"
-                                   value="{{$subscription->name ?? $service->name}}">
+                                   value="{{$subscription->name ?? ''}}">
                         </div>
                     </div>
                 </div>
             @else
-                <input type="hidden" name="name" id="name" class="form-input block w-full py-4 pl-5 pr-10 sm:text-lg sm:leading-5"
+                <input type="hidden" name="name" id="name"
+                       class="form-input block w-full py-4 pl-5 pr-10 sm:text-lg sm:leading-5"
                        value="{{$subscription->name ?? $service->name}}">
                 <input type="hidden" name="service_id" value="{{$subscription->service->id ?? $service->id}}">
             @endif
@@ -64,8 +65,9 @@
                 </label>
                 <div class="mt-1 relative rounded-md shadow-sm">
                     <input name="first_bill" type="date" id="date"
-                           class="form-input py-4 block w-full sm:text-sm sm:leading-5"
-                           placeholder="" value="{{old('first_bill', isset($subscription) ? $subscription->first_bill->format('Y-m-d') : '')}}">
+                           class="form-input py-4 block w-full sm:text-lg sm:leading-5"
+                           placeholder=""
+                           value="{{old('first_bill', isset($subscription) ? $subscription->first_bill->format('Y-m-d') : '')}}">
                 </div>
                 @if ($errors->first('first_bill'))
                     <p class="mt-2 text-sm text-red-600" id="email-error">{{$errors->first('first_bill')}}</p>
@@ -82,9 +84,9 @@
                 </div>
             </div>
             <div class="text-center mt-6">
-                <button type="submit"
-                        class="inline-flex items-center px-6 py-3 flex flex-row justify-center items-center bg-gray-500 text-white rounded-lg-xl focus:outline-none transition duration-150">
-                    <p class="font-medium text-sm">{{$buttonText}}</p>
+                <button type="submit" style="background: {{$service->color ?? $subscription->service->color}}"
+                        class="inline-flex items-center px-5 py-3 border border-transparent text-base leading-5 font-medium rounded-md text-white focus:outline-none transition ease-in-out duration-150">
+                    {{$buttonText}}
                 </button>
             </div>
         </div>

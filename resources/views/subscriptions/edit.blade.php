@@ -4,7 +4,7 @@
     <header>
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
             <h1 class="text-3xl font-bold leading-tight text-gray-900">
-                サービスを編集する
+                <span style="color: {{$subscription->service->color}}">{{$subscription->name}}</span>を編集する
             </h1>
             <div>
                 <form action="{{route('subscriptions.destroy', $subscription->id)}}" method="post">
