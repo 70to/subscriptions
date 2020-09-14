@@ -2,7 +2,7 @@
 
 @section('content-header')
     <header>
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-end">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center sm:items-end">
             <div>
                 <div class="flex-shrink-0 group block focus:outline-none">
                     <div class="flex items-center">
@@ -18,9 +18,9 @@
                 </div>
 
             </div>
-            <h1 class="text-4xl font-bold leading-tight text-gray-900">
+            <h1 class="text-3xl sm:text-4xl font-bold leading-tight text-gray-900">
                 {{$month_sum}}<span
-                    class="text-xl">&nbsp円/月</span>
+                    class="text-base sm:text-xl">&nbsp円/月</span>
             </h1>
         </div>
     </header>
@@ -33,7 +33,6 @@
             <h2 class="text-3xl font-bold mb-2">No Subscriptions</h2>
         </div>
     @endif
-{{--    <my-subscriptions></my-subscriptions>--}}
     @foreach ($subscriptions as $subscription)
 
         @if (Auth::user() && (Auth::user()->id === $subscription->user_id))

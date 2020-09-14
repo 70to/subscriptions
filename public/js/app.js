@@ -27880,7 +27880,7 @@ var render = function() {
           }
         ],
         staticClass:
-          "fixed z-20 bottom-0 inset-x-0 px-4 pb-6 sm:inset-0 sm:p-0 sm:flex sm:items-center sm:justify-center"
+          "fixed z-20 top-0 sm:bottom-0 inset-x-0 px-4 pb-6 sm:inset-0 sm:p-0 sm:flex sm:items-center sm:justify-center"
       },
       [
         _c(
