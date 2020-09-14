@@ -3,7 +3,7 @@
         <div class="flex justify-between items-center h-16">
             <div class="flex">
                 <div class="flex-shrink-0 flex">
-                    <a href="{{Auth::user() ? route('subscriptions.index', Auth::user()->unique_id) : url('/')}}"
+                    <a href="{{Auth::user() ? route('subscriptions.index', Auth::user()->slug) : url('/')}}"
                        class="flex items-center">
                         <div class="mr-1.5">
                             <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"
@@ -27,15 +27,15 @@
                         </template>
                         <template v-slot:content>
                             <a href="{{route('me.add.subscription')}}"
-                               class="block sm:hidden px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">追加する</a>
-                            <a href="{{route('subscriptions.index', Auth::user()->unique_id)}}"
-                               class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">{{Auth::user()->name}}</a>
+                               class="block sm:hidden px-4 py-3 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">追加する</a>
+                            <a href="{{route('subscriptions.index', Auth::user()->slug)}}"
+                               class="block px-4 py-3 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">{{Auth::user()->name}}</a>
 
                             <a href="{{route('settings')}}"
-                               class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">設定</a>
+                               class="block px-4 py-3 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">設定</a>
                             <div class="border-t border-gray-100">
                                 <a href=""
-                                   class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
+                                   class="block px-4 py-3 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
                                    onclick="event.preventDefault();
                                                                             document.getElementById('logout-form').submit();">ログアウト</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST"

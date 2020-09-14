@@ -63,7 +63,7 @@ class SubscriptionController extends Controller
             'first_bill' => $request->first_bill,
             'memo' => $request->memo
         ]);
-        return redirect()->route('subscriptions.index', $user->unique_id);
+        return redirect()->route('subscriptions.index', $user->slug);
     }
 
     /**
@@ -114,7 +114,7 @@ class SubscriptionController extends Controller
         $subscription->first_bill = $request->first_bill;
         $subscription->memo = $request->memo;
         $subscription->save();
-        return redirect()->route('subscriptions.index', $user->unique_id);
+        return redirect()->route('subscriptions.index', $user->slug);
     }
 
     /**
@@ -128,6 +128,6 @@ class SubscriptionController extends Controller
         $this->authorize('delete', $subscription);
         $user = Auth::user();
         $subscription->delete();
-        return redirect()->route('subscriptions.index', $user->unique_id);
+        return redirect()->route('subscriptions.index', $user->slug);
     }
 }

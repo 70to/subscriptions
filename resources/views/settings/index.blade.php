@@ -12,7 +12,8 @@
 
 @section('content')
     <div>
-        <form class="mb-10">
+        <form action="{{route('settings.update')}}" method="post" class="mb-10">
+            @csrf
             <div class="shadow overflow-hidden sm:rounded-md">
                 <div class="px-4 py-5 bg-white sm:p-6">
                     <div class="grid grid-cols-6 gap-6">
@@ -21,8 +22,11 @@
                                 ユーザーネーム
                             </label>
 
-                            <input class="form-input rounded-md shadow-sm mt-1 block w-full" type="text"
+                            <input class="form-input rounded-md shadow-sm mt-1 block w-full" name="name" type="text"
                                    value="{{Auth::user()->name}}">
+                            @if ($errors->has('name'))
+                                <p class="mt-2 text-sm text-red-600" id="email-error">{{$errors->first('name')}}</p>
+                            @endif
                         </div>
 
                         <div class="col-span-6 sm:col-span-4">
@@ -35,9 +39,12 @@
                                   class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 sm:text-sm">
                                {{url('/')}}/
                               </span>
-                                <input id="username" value="{{Auth::user()->unique_id}}"
+                                <input id="username" value="{{Auth::user()->slug}}" name="slug"
                                        class="flex-1 form-input block w-full min-w-0 rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                             </div>
+                            @if ($errors->has('slug'))
+                                <p class="mt-2 text-sm text-red-600" id="email-error">{{$errors->first('slug')}}</p>
+                            @endif
                         </div>
                     </div>
                 </div>

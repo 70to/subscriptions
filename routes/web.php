@@ -25,14 +25,15 @@ Auth::routes([
 ]);
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('{user:unique_id}', 'SubscriptionController@index')->name('subscriptions.index');
+Route::get('{user:slug}', 'SubscriptionController@index')->name('subscriptions.index');
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('{user:unique_id}/edit', 'SubscriptionController@index')->name('subscriptions.edit');
+    Route::get('{user:slug}/edit', 'SubscriptionController@index')->name('subscriptions.edit');
     Route::resource('me/subscriptions', 'SubscriptionController')->except('index');
 //    Route::resource('subscriptions', 'SubscriptionController');
     Route::get('me/add_subscription', 'SubscriptionController@addSubscription')->name('me.add.subscription');
     Route::get('me/settings', 'SettingController@index')->name('settings');
+    Route::post('me/settings', 'SettingController@update')->name('settings.update');
     Route::delete('me', 'SettingController@deleteAccount')->name('user.delete');
 });
 

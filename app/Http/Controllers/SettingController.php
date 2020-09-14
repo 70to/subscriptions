@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Http\Requests\SettingRequest;
 use Illuminate\Support\Facades\Auth;
 
 class SettingController extends Controller
@@ -10,6 +11,15 @@ class SettingController extends Controller
     public function index()
     {
         return view('settings.index');
+    }
+
+    public function update(SettingRequest $request)
+    {
+        $user = Auth::user();
+        $user->name = $request->name;
+        $user->slug = $request->slug;
+        $user->save();
+        return back();
     }
 
     public function deleteAccount()
