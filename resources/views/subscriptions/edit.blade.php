@@ -7,7 +7,7 @@
                 <span style="color: {{$subscription->service->color}}">{{$subscription->name}}</span>を編集する
             </h1>
             <div>
-                <form action="{{route('subscriptions.destroy', $subscription->id)}}" method="post">
+                <form action="{{route('subscriptions.destroy', $subscription->uuid)}}" method="post">
                     @csrf
                     @method('DELETE')
                     <button type="submit" onclick="return confirm('本当に削除しますか?');">
@@ -24,7 +24,7 @@
 @endsection
 
 @section('content')
-    <form class="lg:max-w-6xl md:max-w-5xl" action="{{route('subscriptions.update', $subscription->id)}}" method="post">
+    <form class="lg:max-w-6xl md:max-w-5xl" action="{{route('subscriptions.update', $subscription->uuid)}}" method="post">
         @method('PUT')
         @include('subscriptions.form', ['buttonText' => '更新する'])
     </form>

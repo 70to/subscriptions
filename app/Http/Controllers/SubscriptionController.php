@@ -87,9 +87,9 @@ class SubscriptionController extends Controller
     {
         $this->authorize('view', $subscription);
 
-        if ($subscription->service->id === Service::CUSTOM){
+        if ($subscription->service->id === Service::CUSTOM) {
             $is_custom_service = true;
-        }else{
+        } else {
             $is_custom_service = false;
         }
         $cycles = Subscription::CYCLE;

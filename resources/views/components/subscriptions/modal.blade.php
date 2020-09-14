@@ -58,7 +58,7 @@
                             @if (Auth::user() && Auth::user()->checkMe())
                                 <div class="p-6">
                                     <div class="mt-8 sm:border-t sm:border-gray-200 sm:pt-5 text-center">
-                                        <a href="{{route('subscriptions.edit', $subscription->id)}}" style="background: {{$subscription->service->color}}"
+                                        <a href="{{route('subscriptions.edit', $subscription->uuid)}}" style="background: {{$subscription->service->color}}"
                                            class="inline-flex items-center px-6 py-3 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150">
                                             編集する
                                         </a>

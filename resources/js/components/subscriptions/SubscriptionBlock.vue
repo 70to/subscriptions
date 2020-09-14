@@ -1,5 +1,5 @@
 <template>
-    <a :href="'/me/subscriptions/create?service_id=' + service.id">
+    <a :href="'/subscriptions/create?service_id=' + service.id">
         <div class="p-6 mb-4 bg-green-400 flex justify-between items-center" :style="{background:service.color}">
             <h2 class="text-2xl text-white">{{service.name}}</h2>
             <div>
