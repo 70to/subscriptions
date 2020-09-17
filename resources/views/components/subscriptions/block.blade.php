@@ -7,7 +7,7 @@
                         class="text-xs sm:text-sm">&nbsp;円/{{\App\Models\Subscription::CYCLE[$subscription->cycle_id]['unit']}}</span>
                 </p>
                 @if (Auth::user() && (Auth::user()->id === $subscription->user_id))
-                    <p class="text-white text-xs sm:text-sm">次回支払日: {{$subscription->next_bill}}</p>
+                    <p class="text-white text-xs sm:text-sm">次回支払日: {{$subscription->payment_date}}</p>
                 @endif
             </div>
         </div>

@@ -18,7 +18,6 @@
                 </div>
             </main>
         </div>
-
     </div>
 
     @include('components.footer')
