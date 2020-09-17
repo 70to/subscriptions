@@ -78,7 +78,7 @@ class LoginController extends Controller
         });
 
         Auth::login($user, true);
-        return redirect('/');
+        return $this->redirectTo();
     }
 
     protected function redirectTo()

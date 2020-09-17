@@ -19,6 +19,7 @@ class SubscriptionController extends Controller
     public function index(User $user)
     {
         $subscriptions = $user->subscriptions()->get();
+        $subscriptions = $subscriptions->sortBy('payment_date');
         $month_sum = Subscription::calculate($user);
         return view('subscriptions.index', compact('user', 'subscriptions', 'month_sum'));
     }

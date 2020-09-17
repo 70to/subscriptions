@@ -27,7 +27,7 @@ class NotifyPaymentDateCommand extends Command
     /**
      * @var int
      */
-    public static $day = 10;
+    public static $day = 3;
 
     /**
      * Create a new command instance.
