@@ -4,7 +4,9 @@
 <!-- CSRF Token -->
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
-<title>{{ config('app.name', 'MySubsc') }}</title>
+<title>{{ config('app.name', 'MySubsc') }} | サブスク管理サービス</title>
+<meta name="description" content="{{ config('app.name', 'MySubsc') }}はサブスクを管理して把握することで不必要なサブスクを継続しないようにするためのサイトです。" />
+
 
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}" defer></script>
