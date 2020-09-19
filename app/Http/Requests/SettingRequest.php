@@ -26,7 +26,7 @@ class SettingRequest extends FormRequest
     {
         return [
             'name' => 'required|max:100',
-            'slug' => 'required|max:32|unique:users,slug,'.Auth::id(),
+            'slug' => 'required|max:36|unique:users,slug,'.Auth::id(),
         ];
     }
 }

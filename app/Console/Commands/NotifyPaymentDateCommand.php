@@ -49,7 +49,7 @@ class NotifyPaymentDateCommand extends Command
         $today = Carbon::today();
         $subscriptions = Subscription::all();
         foreach ($subscriptions as $subscription) {
-            if ($subscription->user->mail_notification && $today->diffInDays($subscription->payment_date) <= self::$day) {
+            if ($subscription->user->mail_notification && $today->diffInDays($subscription->payment_date) === self::$day) {
                 $email = $subscription->user->email;
                 Mail::to($email)->send(new CommingPaymentDate($subscription, self::$day));
                 logger()->info($subscription->payment_date);
