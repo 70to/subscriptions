@@ -65,5 +65,16 @@ class MySubscriptionsSeeder extends Seeder
                 'first_bill' => "2020-07-27"
             ]
         );
+
+//        Subscription::create(
+//            [
+//                'user_id' => $user->id,
+//                'service_id' => 1,
+//                'name' => "ConoHa",
+//                'cycle_id' => 1,
+//                'price' => 3900,
+//                'first_bill' => "2020-07-27"
+//            ]
+//        );
     }
 }

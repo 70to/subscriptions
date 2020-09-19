@@ -10,7 +10,8 @@ class ServiceController extends Controller
 {
     public function get()
     {
-        $services = Service::where('id', '<>', Service::CUSTOM)->get();
+        $service_ids = Auth::user()->subscriptions()->pluck('service_id');
+        $services = Service::where('id', '<>', Service::CUSTOM)->whereNotIn('id', $service_ids)->get();
         return response()->json(['services' => $services]);
     }
 }

@@ -12,7 +12,6 @@ class SubscriptionController extends Controller
     public function getMySubscriptions()
     {
         $user = Auth::user();
-//        $subscriptions = $user->subscriptions()->get();
         $subscriptions = Subscription::where('user_id', $user->id)->with('service')->get();
         return response()->json([
             'subscriptions'  => $subscriptions

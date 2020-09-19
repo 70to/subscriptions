@@ -30,8 +30,8 @@
                         </div>
 
                         <div class="col-span-6 sm:col-span-4">
-                            <label class="block font-medium text-sm text-gray-700" for="password">
-                                マイページ
+                            <label class="block font-medium text-sm text-gray-700">
+                                公開用URL
                             </label>
 
                             <div class="max-w-lg flex rounded-md shadow-sm mt-1">
@@ -45,7 +45,27 @@
                             @if ($errors->has('slug'))
                                 <p class="mt-2 text-sm text-red-600" id="email-error">{{$errors->first('slug')}}</p>
                             @endif
+
+                            <fieldset class="mt-6">
+                                <legend class="block font-medium text-sm text-gray-700 mb-3">メール通知(支払い更新日の{{$day}}日前にメールで通知します。)</legend>
+
+                                <div class="flex items-center">
+                                    <div class="flex items-center mr-4">
+                                        <input id="push_everything" name="mail_notification" type="radio" class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out" {{ old('mail_notification', Auth::user()->mail_notification) == 1 ? 'checked' : '' }} value="1">
+                                        <label for="push_everything" class="ml-3">
+                                            <span class="block text-sm leading-5 font-medium text-gray-700">オン</span>
+                                        </label>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input id="push_email" name="mail_notification" type="radio" class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out" {{ old('mail_notification', Auth::user()->mail_notification) == 0 ? 'checked' : '' }} value="0">
+                                        <label for="push_email" class="ml-3">
+                                            <span class="block text-sm leading-5 font-medium text-gray-700">オフ</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </fieldset>
                         </div>
+
                     </div>
                 </div>
 
