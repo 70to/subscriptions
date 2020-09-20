@@ -7,6 +7,11 @@
 <title>{{ config('app.name', 'MySubsc') }} | サブスク管理サービス</title>
 <meta name="description" content="{{ config('app.name', 'MySubsc') }}はサブスクを管理して把握することで不必要なサブスクを継続しないようにするためのサイトです。" />
 
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="og:url" content="{{ config('app.url') }}" />
+<meta property="og:title" content="{{ config('app.name', 'MySubsc') }}" />
+<meta property="og:description" content="{{ config('app.name', 'MySubsc') }}はサブスクを管理して把握することで不必要なサブスクを継続しないようにするためのサイトです。" />
+<meta property="og:image" content="{{asset('imgs/ogp.jpg')}}" />
 
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}" defer></script>
