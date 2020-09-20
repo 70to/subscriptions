@@ -52,13 +52,13 @@ class LoginController extends Controller
         $providerUser = Socialite::driver('Twitter')->user();
 
         // 既に存在するユーザーかを確認
-//        $socialUser = SocialUser::where('provider_user_id', $providerUser->id)->first();
-        $socialUser = User::where('email', $providerUser->email)->first();
+        $socialUser = SocialUser::where('provider_user_id', $providerUser->id)->first();
 
         if ($socialUser) {
+            $socialUser->user->email = $providerUser->email;
+            $socialUser->user->save();
             // 既存のユーザーはログインしてトップページへ
-            Auth::login($socialUser, true);
-//            return redirect($this->redirectTo);
+            Auth::login($socialUser->user, true);
             return $this->redirectTo();
         }
 
