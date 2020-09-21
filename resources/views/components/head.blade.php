@@ -16,7 +16,10 @@
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}" defer></script>
 
-<link rel="shortcut icon" href="{{asset('imgs/favicon.svg')}}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{asset('imgs/apple-touch-icon.png')}}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{asset('imgs/favicon-32x32.png')}}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{asset('imgs/favicon-16x16.png')}}">
+<link rel="manifest" href="{{asset('imgs/site.webmanifest')}}">
 
 <!-- Fonts -->
 <link rel="dns-prefetch" href="//fonts.gstatic.com">
