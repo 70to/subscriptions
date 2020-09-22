@@ -31,6 +31,9 @@ Auth::routes([
 ]);
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/terms', function () {
+    return view('terms');
+})->name('terms');
 Route::get('{user:slug}', 'SubscriptionController@index')->name('subscriptions.index');
 
 Route::group(['middleware' => ['auth']], function () {

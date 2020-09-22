@@ -7,6 +7,11 @@
                     Contact
                 </a>
             </div>
+            <div class="px-5 py-2">
+                <a href="{{route('terms')}}" class="text-base leading-6 text-gray-500 hover:text-gray-900">
+                    Terms
+                </a>
+            </div>
         </nav>
         <div class="mt-8">
             <p class="text-center text-base leading-6 text-gray-400">
