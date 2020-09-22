@@ -16,6 +16,16 @@
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}" defer></script>
 
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-178669375-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-178669375-1');
+</script>
+
 <link rel="apple-touch-icon" sizes="180x180" href="{{asset('imgs/apple-touch-icon.png')}}">
 <link rel="icon" type="image/png" sizes="32x32" href="{{asset('imgs/favicon-32x32.png')}}">
 <link rel="icon" type="image/png" sizes="16x16" href="{{asset('imgs/favicon-16x16.png')}}">
