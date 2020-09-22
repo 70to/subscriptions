@@ -34,6 +34,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/terms', function () {
     return view('terms');
 })->name('terms');
+Route::get('/privacy', function () {
+    return view('privacy');
+})->name('privacy');
+
 Route::get('{user:slug}', 'SubscriptionController@index')->name('subscriptions.index');
 
 Route::group(['middleware' => ['auth']], function () {
