@@ -4,20 +4,18 @@
 
     <div class="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div class="mx-auto text-center">
-            <h2 class="mt-6 mb-10 text-center text-4xl leading-9 font-extrabold text-gray-900">
+            <h2 class="mt-6 mb-12 text-center text-5xl leading-9 font-extrabold text-gray-900">
                 Welcome!
             </h2>
-            <div>
-                <a href="{{route('twitter.login')}}"
+            <div class="mb-6">
+                <a href="{{route('google.login')}}"
                    class="inline-flex items-center px-4 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-white focus:outline-none focus:shadow-outline-indigo transition ease-in-out duration-150"
-                   style="background: #1DA1F2">
-                    <svg class="h-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                        <path
-                            d="M6.29 18.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0020 3.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.073 4.073 0 01.8 7.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 010 16.407a11.616 11.616 0 006.29 1.84"/>
-                    </svg>
-                    Twitterでログイン
+                   style="background: #4285f4">
+                    <svg class="h-5 h-5 mr-2 text-white" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-labelledby="qgb70i822joe25tlwetic6wx13bigx6" role="img" viewBox="0 0 24 24"><title id="qgb70i822joe25tlwetic6wx13bigx6">Google icon</title><path d="M12.24 10.285V14.4h6.806c-.275 1.765-2.056 5.174-6.806 5.174-4.095 0-7.439-3.389-7.439-7.574s3.345-7.574 7.439-7.574c2.33 0 3.891.989 4.785 1.849l3.254-3.138C18.189 1.186 15.479 0 12.24 0c-6.635 0-12 5.365-12 12s5.365 12 12 12c6.926 0 11.52-4.869 11.52-11.726 0-.788-.085-1.39-.189-1.989H12.24z"></path></svg>
+                    Googleでログイン
                 </a>
             </div>
+            <p class="leading-6 text-sm"> このアプリを使用する前に、<a href="{{route('privacy')}}" class="text-blue-600">プライバシーポリシー</a>と<a href="{{route('privacy')}}" class="text-blue-600">利用規約</a>をご確認ください。</p>
             <div>
                 <a
                     href="{{url('/')}}"

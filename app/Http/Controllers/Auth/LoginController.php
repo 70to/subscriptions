@@ -44,12 +44,12 @@ class LoginController extends Controller
 
     public function login()
     {
-        return Socialite::with('Twitter')->redirect();
+        return Socialite::with('google')->redirect();
     }
 
     public function callback()
     {
-        $providerUser = Socialite::driver('Twitter')->user();
+        $providerUser = Socialite::driver('google')->user();
 
         // 既に存在するユーザーかを確認
         $socialUser = SocialUser::where('provider_user_id', $providerUser->id)->first();
@@ -62,12 +62,14 @@ class LoginController extends Controller
             return $this->redirectTo();
         }
 
+//        dd($providerUser);
+
         // 新しいユーザーを作成
         $user = new User();
-        $user->unique_id = $providerUser->nickname;
+        $user->unique_id = $providerUser->id;
         $user->name = $providerUser->name;
         $user->email = $providerUser->email;
-        $user->avatar = $providerUser->user['profile_image_url_https'];
+        $user->avatar = $providerUser->user['picture'];
 
         $socialUser = new SocialUser();
         $socialUser->provider_user_id = $providerUser->id;
