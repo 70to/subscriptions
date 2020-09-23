@@ -150,7 +150,7 @@
                                 <div class="mt-5">
                                     <h5 class="text-lg leading-6 font-medium text-gray-900">もしかして契約している?</h5>
                                     <p class="mt-2 text-base leading-6 text-gray-500">
-                                        Gmailと連携して契約されているであろうサブスクの一覧を取得して漏れがないようにします。
+                                        Gmailと連携して契約されているサブスクを取得して把握することができます。
                                     </p>
                                 </div>
                             </div>
