@@ -15,7 +15,7 @@
                     Googleでログイン
                 </a>
             </div>
-            <p class="leading-6 text-sm"> このアプリを使用する前に、<a href="{{route('privacy')}}" class="text-blue-600">プライバシーポリシー</a>と<a href="{{route('privacy')}}" class="text-blue-600">利用規約</a>をご確認ください。</p>
+            <p class="leading-6 text-sm"> このアプリを使用する前に、<a href="{{route('privacy')}}" class="text-blue-600">プライバシーポリシー</a>と<a href="{{route('terms')}}" class="text-blue-600">利用規約</a>をご確認ください。</p>
             <div>
                 <a
                     href="{{url('/')}}"
