@@ -30,7 +30,16 @@
     @if (count($subscriptions) === 0)
         <div class="mx-auto text-center">
             <img src="{{asset('imgs/undraw_no_data_qbuo.png')}}" alt="" class="w-48 mx-auto">
-            <h2 class="text-3xl font-bold mb-2">No Subscriptions</h2>
+            <h2 class="text-3xl font-bold mb-5">No Subscriptions</h2>
+            <a href="{{route('me.add.subscription')}}"
+               class="hidden sm:inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150">
+                <svg viewBox="0 0 20 20" fill="currentColor" class="-ml-1 mr-1 h-5 w-5">
+                    <path fill-rule="evenodd"
+                          d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                          clip-rule="evenodd"></path>
+                </svg>
+                追加する
+            </a>
         </div>
     @endif
     @foreach ($subscriptions as $subscription)
