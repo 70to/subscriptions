@@ -64,13 +64,18 @@ class Subscription extends Model
         // https://stackoverflow.com/questions/51295911/set-next-month-payment-date-with-php-carbon/51297980
         // https://blog.capilano-fw.com/?p=867#addMonthsNoOverflow
         $today = Carbon::today();
+        $first_bill = new Carbon($this->first_bill);
         if ($this->cycle_id === 1) {
-            $first_bill = new Carbon($this->first_bill);
+            if ($first_bill > $today) {
+                return $first_bill->format('Y-m-d');
+            }
             $diff_in_months = $first_bill->diffInMonths($today);
             $first_bill->addMonthsNoOverflow($diff_in_months + 1);
             $payment_date = $first_bill->format('Y-m-d');
         } elseif ($this->cycle_id === 2) {
-            $first_bill = new Carbon($this->first_bill);
+            if ($first_bill > $today) {
+                return $first_bill->format('Y-m-d');
+            }
             $diff_in_years = $first_bill->diffInYears($today);
             $first_bill->addYearsNoOverflow($diff_in_years + 1);
             $payment_date = $first_bill->format('Y-m-d');
