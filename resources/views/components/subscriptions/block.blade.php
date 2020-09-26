@@ -7,7 +7,7 @@
                         class="text-xs sm:text-sm">&nbsp;円/{{\App\Models\Subscription::CYCLE[$subscription->cycle_id]['unit']}}</span>
                 </p>
                 @if (Auth::user() && (Auth::user()->id === $subscription->user_id))
-                    <p class="text-white text-xs sm:text-sm">次回支払日: {{$subscription->payment_date}}</p>
+                    <p class="text-white text-xs sm:text-sm">@if(\Carbon\Carbon::today()->format('Y-m-d') === $subscription->payment_date) 今日が支払日です@else次回支払日: {{$subscription->payment_date}}@endif</p>
                 @endif
             </div>
         </div>
