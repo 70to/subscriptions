@@ -106,6 +106,8 @@ class Subscription extends Model
         } elseif ($this->cycle_id === 2) {
             if ($first_bill->month === $today->month && $first_bill->day === $today->day) {
                 return $today->format('Y-m-d');
+            } elseif ($first_bill > $today){
+                return $first_bill->format('Y-m-d');
             }
             $diff_in_years = $first_bill->diffInYears($today);
             $first_bill->addYearsNoOverflow($diff_in_years + 1);
