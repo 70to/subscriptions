@@ -12,7 +12,9 @@
                                       d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                             </svg>
                         </div>
-                        <p class="text-xl text-gray-800">MySubsc<span class="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium leading-4 bg-indigo-100 text-indigo-800">Beta</span></p>
+                        <p class="text-xl text-gray-800">MySubsc<span
+                                class="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium leading-4 bg-indigo-100 text-indigo-800">Beta</span>
+                        </p>
                     </a>
                 </div>
             </div>
@@ -22,7 +24,12 @@
                         <template v-slot:activator>
                             <button id="user-menu" aria-label="User menu" aria-haspopup="true"
                                     class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out">
-                                <img src="{{Auth::user()->avatar}}" alt="" class="h-8 w-8 rounded-full">
+                                <span class="inline-block h-8 w-8 rounded-full overflow-hidden bg-gray-100">
+                                  <svg class="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z"/>
+                                  </svg>
+                                </span>
                             </button>
                         </template>
                         <template v-slot:content>

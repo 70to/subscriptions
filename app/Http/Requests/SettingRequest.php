@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\Hankaku;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,7 +26,7 @@ class SettingRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:100',
+            'name' => ['required', 'max:100', new Hankaku],
             'slug' => 'required|max:36|unique:users,slug,'.Auth::id(),
         ];
     }
