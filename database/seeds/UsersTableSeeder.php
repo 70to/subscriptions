@@ -22,5 +22,11 @@ class UsersTableSeeder extends Seeder
             'email' => 'test@test.com',
             'password' => Hash::make('test0123'),
         ]);
+
+        \App\Models\User::create([
+            'name' => 'test',
+            'email' => 'naotolog@gmail.com',
+            'password' => Hash::make('password'),
+        ]);
     }
 }
