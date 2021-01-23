@@ -27,8 +27,6 @@ class SubscriptionRequest extends FormRequest
             'service_id' => 'required',
             'cycle_id' => 'required|integer',
             'price' => 'required|integer',
-            'first_bill' => 'required|date',
-            'memo' => ''
         ];
     }
 }

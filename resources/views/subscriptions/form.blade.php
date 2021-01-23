@@ -59,30 +59,6 @@
                 @endif
             </div>
 
-            <div class="mt-6">
-                <label for="first_bill" class="block text-sm font-medium leading-5 text-gray-700">
-                    初回支払日
-                </label>
-                <div class="mt-1 relative rounded-md shadow-sm">
-                    <input name="first_bill" type="date" id="date"
-                           class="form-input py-4 block w-full sm:text-lg sm:leading-5"
-                           placeholder=""
-                           value="{{old('first_bill', isset($subscription) ? $subscription->first_bill->format('Y-m-d') : '')}}">
-                </div>
-                @if ($errors->first('first_bill'))
-                    <p class="mt-2 text-sm text-red-600" id="email-error">{{$errors->first('first_bill')}}</p>
-                @endif
-            </div>
-
-            <div class="mt-6">
-                <label for="memo" class="block text-sm font-medium leading-5 text-gray-700">
-                    メモ
-                </label>
-                <div class="mt-1 rounded-md shadow-sm">
-                                <textarea name="memo" id="memo" rows="5"
-                                          class="form-textarea block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5">{{old('memo', $subscription->memo ?? '')}}</textarea>
-                </div>
-            </div>
             <div class="text-center mt-6">
                 <button type="submit" style="background: {{$service->color ?? $subscription->service->color}}"
                         class="inline-flex items-center px-5 py-3 border border-transparent text-base leading-5 font-medium rounded-md text-white focus:outline-none transition ease-in-out duration-150">

@@ -61,8 +61,6 @@ class SubscriptionController extends Controller
             'name' => $request->name,
             'cycle_id' => $request->cycle_id,
             'price' => $request->price,
-            'first_bill' => $request->first_bill,
-            'memo' => $request->memo
         ]);
         return redirect()->route('subscriptions.index', $user->slug);
     }

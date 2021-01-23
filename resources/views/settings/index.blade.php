@@ -16,8 +16,14 @@
             @csrf
             <div class="shadow overflow-hidden sm:rounded-md">
                 <div class="px-4 py-5 bg-white sm:p-6">
+
+                    <div class="mb-6">
+                        <h2 id="payment_details_heading" class="text-lg leading-6 font-medium text-gray-900">Account</h2>
+                    </div>
+
                     <div class="grid grid-cols-6 gap-6">
                         <div class="col-span-6 sm:col-span-4">
+
                             <label class="block font-medium text-sm text-gray-700" for="current_password">
                                 ユーザーネーム
                             </label>
@@ -47,23 +53,35 @@
                             @endif
 
                             <fieldset class="mt-6">
-                                <legend class="block font-medium text-sm text-gray-700 mb-3">メール通知(支払い更新日の{{$day}}日前にメールで通知します。)</legend>
+                                <legend class="block font-medium text-sm text-gray-700 mb-3">メール通知(支払い更新日の{{$day}}
+                                    日前にメールで通知します。)
+                                </legend>
 
                                 <div class="flex items-center">
                                     <div class="flex items-center mr-4">
-                                        <input id="push_everything" name="mail_notification" type="radio" class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out" {{ old('mail_notification', Auth::user()->mail_notification) == 1 ? 'checked' : '' }} value="1">
+                                        <input id="push_everything" name="mail_notification" type="radio"
+                                               class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"
+                                               {{ old('mail_notification', Auth::user()->mail_notification) == 1 ? 'checked' : '' }} value="1">
                                         <label for="push_everything" class="ml-3">
                                             <span class="block text-sm leading-5 font-medium text-gray-700">オン</span>
                                         </label>
                                     </div>
                                     <div class="flex items-center">
-                                        <input id="push_email" name="mail_notification" type="radio" class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out" {{ old('mail_notification', Auth::user()->mail_notification) == 0 ? 'checked' : '' }} value="0">
+                                        <input id="push_email" name="mail_notification" type="radio"
+                                               class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"
+                                               {{ old('mail_notification', Auth::user()->mail_notification) == 0 ? 'checked' : '' }} value="0">
                                         <label for="push_email" class="ml-3">
                                             <span class="block text-sm leading-5 font-medium text-gray-700">オフ</span>
                                         </label>
                                     </div>
                                 </div>
                             </fieldset>
+
+                            <a href="{{route('twitter.login')}}"
+                                    class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
+                                twitter
+                            </a>
+
                         </div>
 
                     </div>
