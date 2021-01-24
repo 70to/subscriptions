@@ -56,6 +56,8 @@ class TweetCommand extends Command
 
             $str .= "\r\n合計: {$sum} 円/月";
 
+            $str .= "\r\n".route('subscriptions.index', $user->slug);
+
             if (isset($token) && isset($token_secret)) {
                 $connection = new TwitterOAuth(config('services.twitter.client_id'), config('services.twitter.client_secret'), $token, $token_secret);
                 $connection->post("statuses/update", ["status" => $str]);
