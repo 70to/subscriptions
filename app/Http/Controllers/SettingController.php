@@ -20,7 +20,6 @@ class SettingController extends Controller
         $user = Auth::user();
         $user->name = $request->name;
         $user->slug = $request->slug;
-        $user->mail_notification = $request->mail_notification;
         $user->save();
         return back();
     }
