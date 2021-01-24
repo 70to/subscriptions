@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('og:image',"https://res.cloudinary.com/dptiwq0at/image/upload/l_text:Sawarabi%20Gothic_50_bold:{$user->name}の契約中サブスク,co_white,c_fit/v1611498366/ogp/ogp_image_kd9vhb.jpg")
+
 @section('content-header')
     <header>
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center sm:items-end">

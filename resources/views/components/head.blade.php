@@ -11,7 +11,7 @@
 <meta property="og:url" content="{{ config('app.url') }}" />
 <meta property="og:title" content="{{ config('app.name', 'MySubsc') }}" />
 <meta property="og:description" content="{{ config('app.name', 'MySubsc') }}はサブスクを管理して把握することで不必要なサブスクを継続しないようにするためのサイトです。" />
-<meta property="og:image" content="{{asset('imgs/ogp.jpg')}}" />
+<meta property="og:image" content="@yield('og:image' ?? asset('imgs/ogp.jpg'))" />
 
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}" defer></script>
