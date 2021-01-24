@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
-use DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Models\User;
+use App\Models\SocialUser;
+use DB;
+use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
@@ -23,6 +26,13 @@ class LoginController extends Controller
     use AuthenticatesUsers;
 
     /**
+     * Where to redirect users after login.
+     *
+     * @var string
+     */
+//    protected $redirectTo = RouteServiceProvider::HOME;
+
+    /**
      * Create a new controller instance.
      *
      * @return void
@@ -32,11 +42,50 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    public function login()
+    {
+        return Socialite::with('Twitter')->redirect();
+    }
+
+    public function callback()
+    {
+        $providerUser = Socialite::driver('Twitter')->user();
+
+        // 既に存在するユーザーかを確認
+        $socialUser = SocialUser::where('provider_user_id', $providerUser->id)->first();
+
+        if ($socialUser) {
+            $socialUser->user->email = $providerUser->email;
+            $socialUser->user->save();
+            // 既存のユーザーはログインしてトップページへ
+            Auth::login($socialUser->user, true);
+            return $this->redirectTo();
+        }
+
+        // 新しいユーザーを作成
+        $user = new User();
+        $user->name = $providerUser->name;
+        $user->email = $providerUser->email;
+        $user->token = $providerUser->token;
+        $user->token_secret = $providerUser->tokenSecret;
+
+        $socialUser = new SocialUser();
+        $socialUser->provider_user_id = $providerUser->id;
+
+        DB::transaction(function () use ($user, $socialUser) {
+            $user->save();
+            $user->socialUsers()->save($socialUser);
+        });
+
+        Auth::login($user, true);
+        return $this->redirectTo();
+    }
+
     protected function redirectTo()
     {
         if (!Auth::user()) {
             return '/';
         }
-        return route('subscriptions.index', Auth::user()->slug);
+        return redirect()->route('subscriptions.index', Auth::user()->slug);
     }
 }

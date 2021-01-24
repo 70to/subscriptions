@@ -3,94 +3,21 @@
 @section('content')
 
     <div class="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-        <div class="sm:mx-auto sm:w-full sm:max-w-md">
-            <h2 class="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900">
-                アカウント登録
+        <div class="mx-auto text-center">
+            <h2 class="mt-6 mb-10 text-center text-4xl leading-9 font-extrabold text-gray-900">
+                Welcome!
             </h2>
-            <p class="mt-2 text-center text-sm leading-5 text-gray-600 max-w">
-                Or
-                <a href="{{route('login')}}"
-                   class="font-medium text-blue-600 hover:text-blue-500 focus:outline-none focus:underline transition ease-in-out duration-150">
-                    ログイン
+            <div>
+                <a href="{{route('twitter.login')}}"
+                   class="inline-flex items-center px-4 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-white focus:outline-none focus:shadow-outline-indigo transition ease-in-out duration-150"
+                   style="background: #1DA1F2">
+                    <svg class="h-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M6.29 18.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0020 3.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.073 4.073 0 01.8 7.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 010 16.407a11.616 11.616 0 006.29 1.84"/>
+                    </svg>
+                    Twitterでログイン
                 </a>
-            </p>
-        </div>
-
-        <div class="mt-8 sm:mx-auto  sm:w-full sm:max-w-md">
-            <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-                <form action="{{ route('register') }}" method="POST">
-                    @csrf
-                    <div>
-                        <label for="name" class="text-left block text-sm font-medium leading-5 text-gray-700">
-                            ユーザー名
-                        </label>
-                        <div class="mt-1 rounded-md shadow-sm">
-                            <input id="name" type="text" required
-                                   class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
-                                   name="name" value="{{ old('name') }}"/>
-                        </div>
-                        @if ($errors->has('name'))
-                            <p class="mt-2 text-sm text-red-600">{{ $errors->first('name') }}</p>
-                        @endif
-                    </div>
-
-                    <div class="mt-6">
-                        <label for="email" class="text-left block text-sm font-medium leading-5 text-gray-700">
-                            メールアドレス
-                        </label>
-                        <div class="mt-1 rounded-md shadow-sm">
-                            <input id="email" type="email" required
-                                   class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
-                                   name="email" value="{{ old('email') }}"/>
-                        </div>
-                        @if ($errors->has('email'))
-                            <p class="mt-2 text-sm text-red-600">{{ $errors->first('email') }}</p>
-                        @endif
-                    </div>
-
-                    <div class="mt-6">
-                        <label for="password" class="text-left block text-sm font-medium leading-5 text-gray-700">
-                            パスワード
-                        </label>
-                        <div class="mt-1 rounded-md shadow-sm">
-                            <input id="password" type="password" required
-                                   class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
-                                   name="password"/>
-                        </div>
-                        @error('password')
-                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    <div class="mt-6">
-                        <label for="password-confirm"
-                               class="text-left block text-sm font-medium leading-5 text-gray-700">
-                            パスワード再入力
-                        </label>
-                        <div class="mt-1 rounded-md shadow-sm">
-                            <input id="password-confirm" type="password" required
-                                   class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
-                                   name="password_confirmation"/>
-                        </div>
-                        @if ($errors->has('password'))
-                            <p class="mt-2 text-sm text-red-600">{{ $errors->first('password') }}</p>
-                        @endif
-                    </div>
-
-                    <div class="mt-6">
-                      <span class="block w-full rounded-md shadow-sm">
-                        <button type="submit"
-                                class="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition duration-150 ease-in-out">
-                          登録
-                        </button>
-                      </span>
-                    </div>
-                </form>
-
             </div>
-            {{--            <p class="leading-6 text-sm"> このアプリを使用する前に、<a href="{{route('privacy')}}"--}}
-            {{--                                                          class="text-blue-600">プライバシーポリシー</a>と<a--}}
-            {{--                    href="{{route('terms')}}" class="text-blue-600">利用規約</a>をご確認ください。</p>--}}
             <div>
                 <a
                     href="{{url('/')}}"
@@ -104,4 +31,5 @@
                 </a>
             </div>
         </div>
+    </div>
 @endsection

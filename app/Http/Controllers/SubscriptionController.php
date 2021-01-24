@@ -61,8 +61,18 @@ class SubscriptionController extends Controller
             'name' => $request->name,
             'cycle_id' => $request->cycle_id,
             'price' => $request->price,
+            'month_price' => $this->getMonthPrice($request->cycle_id, $request->price),
         ]);
         return redirect()->route('subscriptions.index', $user->slug);
+    }
+
+    private function getMonthPrice(int $cycle_id, int $price)
+    {
+        if ($cycle_id === 1) {
+            return $price;
+        } elseif ($cycle_id === 2) {
+            return floor($price / 12);
+        }
     }
 
     /**
@@ -110,8 +120,7 @@ class SubscriptionController extends Controller
         $subscription->name = $request->name;
         $subscription->cycle_id = $request->cycle_id;
         $subscription->price = $request->price;
-        $subscription->first_bill = $request->first_bill;
-        $subscription->memo = $request->memo;
+        $subscription->month_price = $this->getMonthPrice($request->cycle_id, $request->price);
         $subscription->save();
         return redirect()->route('subscriptions.index', $user->slug);
     }

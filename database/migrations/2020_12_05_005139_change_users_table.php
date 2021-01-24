@@ -16,6 +16,7 @@ class ChangeUsersTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('unique_id');
             $table->dropColumn('avatar');
+            $table->string('email')->nullable()->change();
         });
     }
 
@@ -29,6 +30,7 @@ class ChangeUsersTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->string('unique_id')->after('id');
             $table->string('avatar')->after('password');
+            $table->string('email')->nullable(false)->change();
         });
     }
 }
