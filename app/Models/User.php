@@ -59,4 +59,30 @@ class User extends Authenticatable
     {
         return (bool)(Auth::id() === $this->id);
     }
+
+    public function getTweetBody(string $line_feed_code): string
+    {
+        $str = "■契約中サブスク$line_feed_code$line_feed_code";
+
+        $sum = 0;
+        foreach ($this->subscriptions as $subscription) {
+            $sum += $subscription->month_price;
+            $str .= "・{$this->getSubscriptionPriceStr($subscription)}$line_feed_code";
+        }
+
+        $str .= $line_feed_code."合計: {$sum} 円/月$line_feed_code";
+
+        $str .= route('subscriptions.index', $this->slug).$line_feed_code;
+
+        return $str;
+    }
+
+    private function getSubscriptionPriceStr(Subscription $subscription)
+    {
+        if ($subscription->cycle_id === 1) {
+            return "{$subscription->name} {$subscription->price}円/月";
+        } elseif ($subscription->cycle_id === 2) {
+            return "{$subscription->name} {$subscription->month_price}円/月({$subscription->price}円/年)";
+        }
+    }
 }

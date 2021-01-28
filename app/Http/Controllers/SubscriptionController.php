@@ -6,7 +6,9 @@ use App\Http\Requests\SubscriptionRequest;
 use App\Models\Subscription;
 use App\Models\Service;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 
 class SubscriptionController extends Controller
@@ -21,7 +23,9 @@ class SubscriptionController extends Controller
         $subscriptions = $user->subscriptions()->get();
         $subscriptions = $subscriptions->sortBy('payment_date');
         $month_sum = Subscription::calculate($user);
-        return view('subscriptions.index', compact('user', 'subscriptions', 'month_sum'));
+        $this_month = Carbon::now()->month;
+        $tweet_text = $user->getTweetBody("%0a");
+        return view('subscriptions.index', compact('user', 'subscriptions', 'month_sum', 'this_month', 'tweet_text'));
     }
 
     public function addSubscription()

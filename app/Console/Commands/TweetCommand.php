@@ -3,7 +3,6 @@
 namespace App\Console\Commands;
 
 use Abraham\TwitterOAuth\TwitterOAuth;
-use App\Models\Subscription;
 use App\Models\User;
 use Illuminate\Console\Command;
 
@@ -14,14 +13,14 @@ class TweetCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'command:name';
+    protected $signature = 'tweet:report';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = '契約しているサブスクの合計金額のOGPツイートする';
 
     /**
      * Create a new command instance.
@@ -42,35 +41,20 @@ class TweetCommand extends Command
     {
         $users = User::all();
         foreach ($users as $user) {
-
-            $token = $user->token;
-            $token_secret = $user->token_secret;
-
-            $str = "■契約中サブスク\r\n\r\n";
-
-            $sum = 0;
-            foreach ($user->subscriptions as $subscription){
-                $sum += $subscription->month_price;
-                $str .= "・{$this->getSubscriptionPriceStr($subscription)}\r\n";
-            }
-
-            $str .= "\r\n合計: {$sum} 円/月";
-
-            $str .= "\r\n".route('subscriptions.index', $user->slug);
-
-            if (isset($token) && isset($token_secret)) {
-                $connection = new TwitterOAuth(config('services.twitter.client_id'), config('services.twitter.client_secret'), $token, $token_secret);
-                $connection->post("statuses/update", ["status" => $str]);
-            }
+            $this->tweet($user);
         }
     }
 
-    private function getSubscriptionPriceStr(Subscription $subscription)
+    private function tweet(User $user)
     {
-        if ($subscription->cycle_id === 1){
-            return "{$subscription->name} {$subscription->price}円/月";
-        } elseif ($subscription->cycle_id === 2) {
-            return "{$subscription->name} {$subscription->month_price}円/月({$subscription->price}円/年)";
+        $token = $user->token;
+        $token_secret = $user->token_secret;
+
+        $str = $user->getTweetBody("\r\n");
+
+        if (isset($token) && isset($token_secret)) {
+            $connection = new TwitterOAuth(config('services.twitter.client_id'), config('services.twitter.client_secret'), $token, $token_secret);
+            $connection->post("statuses/update", ["status" => $str]);
         }
     }
 }

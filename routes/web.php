@@ -39,6 +39,7 @@ Route::get('{user:slug}', 'SubscriptionController@index')->name('subscriptions.i
 Route::group(['middleware' => ['auth']], function () {
     Route::get('{user:slug}/edit', 'SubscriptionController@index')->name('subscriptions.edit');
     Route::resource('subscriptions', 'SubscriptionController')->except('index');
+    Route::get('me/tweet', 'SubscriptionController@tweet')->name('me.tweet.subscription');
     Route::get('me/add_subscription', 'SubscriptionController@addSubscription')->name('me.add.subscription');
     Route::get('me/settings', 'SettingController@index')->name('settings');
     Route::post('me/settings', 'SettingController@update')->name('settings.update');

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('og:image',"https://res.cloudinary.com/dptiwq0at/image/upload/l_text:Sawarabi%20Gothic_50_bold:{$user->name}の契約中サブスク,co_white,c_fit/v1611498366/ogp/ogp_image_kd9vhb.jpg")
+@section('og:image',"https://res.cloudinary.com/dptiwq0at/image/upload/l_text:Sawarabi%20Gothic_70_bold:{$user->name}の契約中サブスク%0A{$this_month}月は合計で{$month_sum}円/月,co_white,c_fit/v1611498366/ogp/ogp_image_kd9vhb.jpg")
 
 @section('content-header')
     <header>
@@ -9,10 +9,11 @@
                 <div class="flex-shrink-0 group block focus:outline-none">
                     <div class="flex items-center">
                         <div>
-{{--                            <img class="inline-block h-12 w-12 rounded-full" src="{{$user->avatar}}" alt="">--}}
+                            {{--                            <img class="inline-block h-12 w-12 rounded-full" src="{{$user->avatar}}" alt="">--}}
                             <span class="inline-block h-12 w-12 rounded-full overflow-hidden bg-gray-100">
                               <svg class="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                                <path
+                                    d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z"/>
                               </svg>
                             </span>
                         </div>
@@ -49,27 +50,29 @@
             </a>
         </div>
     @endif
-    @foreach ($subscriptions as $subscription)
 
+    @foreach ($subscriptions as $subscription)
         @if (Auth::user() && (Auth::user()->id === $subscription->user_id))
-            @component('components.subscriptions.modal', ['subscription' => $subscription])
+            <a href="{{route('subscriptions.edit', $subscription->uuid)}}">
                 @include('components.subscriptions.block')
-            @endcomponent
+            </a>
         @else
             @include('components.subscriptions.block')
         @endif
-
     @endforeach
-{{--    <div>--}}
-{{--        <div class="w-1/5 mx-auto mt-10">--}}
-{{--            <p class="text-gray-600 mb-2 text-center">\snsにシェアしよう/</p>--}}
-{{--            <span class="w-full inline-flex rounded-md shadow-sm">--}}
-{{--              <button type="button" class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md bg-white text-sm leading-5 font-medium text-gray-500 hover:text-gray-400 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition duration-150 ease-in-out" aria-label="Sign in with Twitter">--}}
-{{--                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">--}}
-{{--                  <path d="M6.29 18.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0020 3.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.073 4.073 0 01.8 7.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 010 16.407a11.616 11.616 0 006.29 1.84" />--}}
-{{--                </svg>--}}
-{{--              </button>--}}
-{{--            </span>--}}
-{{--        </div>--}}
-{{--    </div>--}}
+
+    <div class="w-1/5 mx-auto mt-10">
+        <p class="text-gray-600 mb-2 text-center">\snsにシェアしよう/</p>
+        <span class="w-full inline-flex rounded-md shadow-sm">
+          <a href="https://twitter.com/share?text={{$tweet_text}}&hashtags=サブスク"
+             target="_blank"
+             class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md bg-white text-sm leading-5 font-medium text-gray-500 hover:text-gray-400 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition duration-150 ease-in-out"
+             aria-label="Sign in with Twitter">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path
+                  d="M6.29 18.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0020 3.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.073 4.073 0 01.8 7.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 010 16.407a11.616 11.616 0 006.29 1.84"/>
+            </svg>
+          </a>
+        </span>
+    </div>
 @endsection
