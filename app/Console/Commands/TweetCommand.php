@@ -51,6 +51,7 @@ class TweetCommand extends Command
         $token_secret = $user->token_secret;
 
         $str = $user->getTweetBody("\r\n");
+        $str .= route('subscriptions.index', $user->slug)."\r\n";
 
         if (isset($token) && isset($token_secret)) {
             $connection = new TwitterOAuth(config('services.twitter.client_id'), config('services.twitter.client_secret'), $token, $token_secret);

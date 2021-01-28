@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('og:description',"{$user->name}のサブスク")
+
 @section('og:image',"https://res.cloudinary.com/dptiwq0at/image/upload/l_text:Sawarabi%20Gothic_80_bold:契約中サブスク%0A{$this_month}月は合計で{$month_sum}円,co_white,w_1500,c_fit/v1611498366/ogp/ogp_image_kd9vhb.jpg")
 
 @section('content-header')
