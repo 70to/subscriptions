@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('og:image',"https://res.cloudinary.com/dptiwq0at/image/upload/l_text:Sawarabi%20Gothic_70_bold:{$user->name}の契約中サブスク%0A{$this_month}月は合計で{$month_sum}円,co_white,c_fit/v1611498366/ogp/ogp_image_kd9vhb.jpg")
+@section('og:image',"https://res.cloudinary.com/dptiwq0at/image/upload/l_text:Sawarabi%20Gothic_80_bold:契約中サブスク%0A{$this_month}月は合計で{$month_sum}円,co_white,w_1500,c_fit/v1611498366/ogp/ogp_image_kd9vhb.jpg")
 
 @section('content-header')
     <header>
@@ -64,7 +64,7 @@
     <div class="w-1/5 mx-auto mt-10">
         <p class="text-gray-600 mb-2 text-center">\snsにシェアしよう/</p>
         <span class="w-full inline-flex rounded-md shadow-sm">
-          <a href="https://twitter.com/share?text={{$tweet_text}}"
+          <a href="https://twitter.com/share?text={{$tweet_text}}&url={{route('subscriptions.index', $this->slug)}}"
              target="_blank"
              class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md bg-white text-sm leading-5 font-medium text-gray-500 hover:text-gray-400 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition duration-150 ease-in-out"
              aria-label="Sign in with Twitter">

@@ -72,7 +72,7 @@ class User extends Authenticatable
 
         $str .= $line_feed_code."合計: {$sum} 円/月$line_feed_code";
 
-        $str .= route('subscriptions.index', $this->slug).$line_feed_code;
+//        $str .= route('subscriptions.index', $this->slug).$line_feed_code;
 
         return $str;
     }
