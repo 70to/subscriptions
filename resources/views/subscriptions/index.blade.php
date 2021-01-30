@@ -63,9 +63,10 @@
         @endif
     @endforeach
 
-    <div class="w-1/5 mx-auto mt-10">
-        <p class="text-gray-600 mb-2 text-center">\snsにシェアしよう/</p>
-        <span class="w-full inline-flex rounded-md shadow-sm">
+    @if (count($subscriptions) ==! 0)
+        <div class="w-1/5 mx-auto mt-10">
+            <p class="text-gray-600 mb-2 text-center">\snsにシェアしよう/</p>
+            <span class="w-full inline-flex rounded-md shadow-sm">
           <a href="https://twitter.com/share?text={{$tweet_text}}&url={{url()->full()}}"
              target="_blank"
              class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md bg-white text-sm leading-5 font-medium text-gray-500 hover:text-gray-400 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition duration-150 ease-in-out"
@@ -76,5 +77,6 @@
             </svg>
           </a>
         </span>
-    </div>
+        </div>
+    @endif
 @endsection
