@@ -71,6 +71,6 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           username: ${{ secrets.SSH_USERNAME }}
           script: |
-            cd /var/www/html/subscriptions/backend/
+            cd /var/www/html/subscriptions/
             git checkout -f
             git pull origin master
