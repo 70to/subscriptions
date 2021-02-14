@@ -1,5 +1,4 @@
-FROM mysql:8.0
-LABEL maintainer="ucan-lab <yes@u-can.pro>"
+FROM mariadb:10.3
 
 ENV TZ=UTC
 
