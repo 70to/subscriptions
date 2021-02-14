@@ -21,7 +21,7 @@ class SubscriptionController extends Controller
     {
         $subscriptions = $user->subscriptions()->get();
         $subscriptions = $subscriptions->sortBy('payment_date');
-        $month_sum = Subscription::calculate($user);
+        $month_sum = $user->subscriptions()->sum('month_price');
         $this_month = Carbon::now()->month;
         $tweet_text = $user->getTweetBody("%0a");
         return view('subscriptions.index', compact('user', 'subscriptions', 'month_sum', 'this_month', 'tweet_text'));
@@ -71,9 +71,9 @@ class SubscriptionController extends Controller
 
     private function getMonthPrice(int $cycle_id, int $price)
     {
-        if ($cycle_id === 1) {
+        if ($cycle_id === Subscription::MONTH_CYCLE) {
             return $price;
-        } elseif ($cycle_id === 2) {
+        } elseif ($cycle_id === Subscription::YEAR_CYCLE) {
             return floor($price / 12);
         }
     }

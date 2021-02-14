@@ -72,16 +72,14 @@ class User extends Authenticatable
 
         $str .= $line_feed_code."合計: {$sum} 円/月$line_feed_code";
 
-//        $str .= route('subscriptions.index', $this->slug).$line_feed_code;
-
         return $str;
     }
 
     private function getSubscriptionPriceStr(Subscription $subscription)
     {
-        if ($subscription->cycle_id === 1) {
+        if ($subscription->cycle_id === Subscription::MONTH_CYCLE) {
             return "{$subscription->name} {$subscription->price}円/月";
-        } elseif ($subscription->cycle_id === 2) {
+        } elseif ($subscription->cycle_id === Subscription::YEAR_CYCLE) {
             return "{$subscription->name} {$subscription->month_price}円/月({$subscription->price}円/年)";
         }
     }

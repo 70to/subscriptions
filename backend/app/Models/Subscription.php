@@ -18,15 +18,14 @@ class Subscription extends Model
         'first_bill'
     ];
 
-    const CYCLE = [
-        1 => ['label' => '月に一回', 'unit' => '月', 'default_checked' => true],
-        2 => ['label' => '年に一回', 'unit' => '年', 'default_checked' => false]
-    ];
+    const MONTH_CYCLE = 1;
 
-//    const CYCLE = [
-//        'MONTH' => ['value' => 1, 'label' => '月に一回', 'unit' => '月', 'default_checked' => true],
-//        'YEAR' => ['value' => 2, 'label' => '年に一回', 'unit' => '年', 'default_checked' => false]
-//    ];
+    const YEAR_CYCLE = 2;
+
+    const CYCLE = [
+        self::MONTH_CYCLE => ['label' => '月に一回', 'unit' => '月', 'default_checked' => true],
+        self::YEAR_CYCLE => ['label' => '年に一回', 'unit' => '年', 'default_checked' => false]
+    ];
 
     /**
      * @link https://www.hypertextcandy.com/laravel-primary-key-uuid
@@ -57,19 +56,5 @@ class Subscription extends Model
     public function service()
     {
         return $this->belongsTo('App\Models\Service');
-    }
-
-    public static function calculate(User $user)
-    {
-        $month_sum = 0;
-        $subscriptions = $user->subscriptions()->get();
-        foreach ($subscriptions as $subscription) {
-            if ($subscription->cycle_id === 1) {
-                $month_sum += $subscription->price;
-            } elseif ($subscription->cycle_id === 2) {
-                $month_sum += $subscription->price / 12;
-            }
-        }
-        return floor($month_sum);
     }
 }
