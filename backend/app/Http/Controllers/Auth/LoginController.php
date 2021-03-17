@@ -55,7 +55,6 @@ class LoginController extends Controller
         $socialUser = SocialUser::where('provider_user_id', $providerUser->id)->first();
 
         if ($socialUser) {
-            $socialUser->user->email = $providerUser->email;
             $socialUser->user->save();
             // 既存のユーザーはログインしてトップページへ
             Auth::login($socialUser->user, true);
@@ -65,7 +64,6 @@ class LoginController extends Controller
         // 新しいユーザーを作成
         $user = new User();
         $user->name = $providerUser->name;
-        $user->email = $providerUser->email;
         $user->token = $providerUser->token;
         $user->token_secret = $providerUser->tokenSecret;
 
