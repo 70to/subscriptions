@@ -54,6 +54,28 @@
                             @endif
                         </div>
 
+                        <div class="col-span-6 sm:col-span-4">
+                            <label class="block font-medium text-sm text-gray-700">
+                                レポート用メールアドレス
+                                <span class="tooltip inline-block align-bottom">
+                                    <span class="tooltip-text">メールアドレスを設定すると<br>毎月契約しているサブスクの一覧がレポートで送られてきます。</span>
+                                    <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg"
+                                         viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                        <path fill-rule="evenodd"
+                                              d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
+                                              clip-rule="evenodd"/>
+                                    </svg>
+                                </span>
+                            </label>
+
+                            <input class="form-input rounded-md shadow-sm mt-1 block w-full" name="name" type="email"
+                                   placeholder="you@example.com"
+                                   value="">
+                            @if ($errors->has('slug'))
+                                <p class="mt-2 text-sm text-red-600" id="email-error">{{$errors->first('slug')}}</p>
+                            @endif
+                        </div>
+
                     </div>
                 </div>
 
