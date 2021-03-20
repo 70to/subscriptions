@@ -63,7 +63,7 @@ class LoginController extends Controller
 
         // 新しいユーザーを作成
         $user = new User();
-        $user->name = $providerUser->name;
+        $user->name = $providerUser->nickname; //nameではなくnicknameを保存
         $user->token = $providerUser->token;
         $user->token_secret = $providerUser->tokenSecret;
 
