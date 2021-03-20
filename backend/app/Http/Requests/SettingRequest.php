@@ -25,9 +25,11 @@ class SettingRequest extends FormRequest
      */
     public function rules()
     {
+        $auth_id = Auth::id();
         return [
             'name' => ['required', 'max:100', new Hankaku],
-            'slug' => 'required|max:36|unique:users,slug,'.Auth::id(),
+            'slug' => 'required|max:36|unique:users,slug,'.$auth_id,
+            'email' => "nullable|max:36|unique:users,email,{$auth_id}"
         ];
     }
 }

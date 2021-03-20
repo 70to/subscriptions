@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
-use App\Console\Commands\NotifyPaymentDateCommand;
 use App\Http\Requests\SettingRequest;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,8 +9,7 @@ class SettingController extends Controller
 {
     public function index()
     {
-        $day = NotifyPaymentDateCommand::$day;
-        return view('settings.index', compact('day'));
+        return view('settings.index');
     }
 
     public function update(SettingRequest $request)
@@ -20,6 +17,7 @@ class SettingController extends Controller
         $user = Auth::user();
         $user->name = $request->name;
         $user->slug = $request->slug;
+        $user->email = $request->email;
         $user->save();
         return back();
     }

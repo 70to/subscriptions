@@ -12,7 +12,7 @@
 
 @section('content')
     <div>
-        <form action="{{route('settings.update')}}" method="post" class="mb-10">
+        <form action="{{route('settings.update')}}" method="post" class="mb-10" autocomplete="off">
             @csrf
             <div class="shadow overflow-hidden sm:rounded-md">
                 <div class="px-4 py-5 bg-white sm:p-6">
@@ -25,7 +25,7 @@
                     <div class="grid grid-cols-6 gap-6">
                         <div class="col-span-6 sm:col-span-4">
 
-                            <label class="block font-medium text-sm text-gray-700" for="current_password">
+                            <label class="block font-medium text-sm text-gray-700">
                                 ユーザーネーム
                             </label>
 
@@ -68,11 +68,11 @@
                                 </span>
                             </label>
 
-                            <input class="form-input rounded-md shadow-sm mt-1 block w-full" name="name" type="email"
+                            <input class="form-input rounded-md shadow-sm mt-1 block w-full" name="email" type="email"
                                    placeholder="you@example.com"
-                                   value="">
-                            @if ($errors->has('slug'))
-                                <p class="mt-2 text-sm text-red-600" id="email-error">{{$errors->first('slug')}}</p>
+                                   value="{{old('email', Auth::user()->email)}}">
+                            @if ($errors->has('email'))
+                                <p class="mt-2 text-sm text-red-600" id="email-error">{{$errors->first('email')}}</p>
                             @endif
                         </div>
 

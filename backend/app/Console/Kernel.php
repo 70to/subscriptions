@@ -24,7 +24,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-//         $schedule->command('notify:payment_date')->daily();
+        $schedule->command('mail:subscription:report')->daily();
+        $schedule->command('tweet:report')->daily();
     }
 
     /**
