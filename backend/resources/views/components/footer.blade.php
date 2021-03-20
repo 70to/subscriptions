@@ -7,11 +7,11 @@
                     Contact
                 </a>
             </div>
-            <div class="px-5 py-2">
-                <a href="{{route('terms')}}" class="text-base leading-6 text-gray-500 hover:text-gray-900">
-                    Terms
-                </a>
-            </div>
+{{--            <div class="px-5 py-2">--}}
+{{--                <a href="{{route('terms')}}" class="text-base leading-6 text-gray-500 hover:text-gray-900">--}}
+{{--                    Terms--}}
+{{--                </a>--}}
+{{--            </div>--}}
             <div class="px-5 py-2">
                 <a href="{{route('privacy')}}" class="text-base leading-6 text-gray-500 hover:text-gray-900">
                     Privacy
