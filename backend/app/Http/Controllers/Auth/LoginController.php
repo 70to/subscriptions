@@ -43,6 +43,6 @@ class LoginController extends Controller
         if (!Auth::user()) {
             return '/';
         }
-        return redirect()->route('subscriptions.index', Auth::user()->slug);
+        return route('subscriptions.index', Auth::user()->slug);
     }
 }
