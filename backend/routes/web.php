@@ -47,8 +47,8 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 Route::prefix('auth')->group(function () {
-    Route::get('twitter', 'Auth\LoginController@login')->name('twitter.login');
-    Route::get('twitter/callback', 'Auth\LoginController@callback');
+    Route::get('twitter', 'Auth\OauthController@login')->name('twitter.login');
+    Route::get('twitter/callback', 'Auth\OauthController@callback');
 //    Route::get('google', 'Auth\LoginController@login')->name('google.login');
 //    Route::get('google/callback', 'Auth\LoginController@callback');
 });

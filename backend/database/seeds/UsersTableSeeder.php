@@ -12,21 +12,11 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         $user = \App\Models\User::create([
-            'name' => 'admin',
-            'email' => 'admin@admin.com',
-            'password' => Hash::make('admin0123'),
-        ]);
-
-        \App\Models\User::create([
             'name' => 'test',
-            'email' => 'test@test.com',
-            'password' => Hash::make('test0123'),
-        ]);
-
-        \App\Models\User::create([
-            'name' => 'test',
-            'email' => 'naotolog@gmail.com',
-            'password' => Hash::make('password'),
+            'email' => 'test@example.com ',
+            'password' => Hash::make('KfnWnzUBrB4eAkc'),
+            'token' => 'test',
+            'token_secret' => 'test',
         ]);
     }
 }
