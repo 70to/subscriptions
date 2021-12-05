@@ -14,7 +14,7 @@
 
 OGPアプリなのでTwitterアカウントとの連携が必須になっていますが、Twitterログインを行わないテストアカウントも作成しております。
 
-[https://mysubsc.net/login](https://mysubsc.net/login) で以下のアカウント情報で使用することが可能です。
+[https://mysubsc.herokuapp.com/login](https://mysubsc.herokuapp.com/login) で以下のアカウント情報で使用することが可能です。
 
 メールアドレス test@example.com  
 パスワード KfnWnzUBrB4eAkc
