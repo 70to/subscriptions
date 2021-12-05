@@ -7,7 +7,7 @@
 
 ## URL
 
-[https://mysubsc.net/](https://mysubsc.net/)
+[MySubsc](https://mysubsc.herokuapp.com)
 
 
 ## Test Account
